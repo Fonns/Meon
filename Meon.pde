@@ -23,7 +23,8 @@ ControlDevice comando2;
 Box2DProcessing box2d;
 float fx1;
 float fx2;
-ArrayList<P1> players;
+float w, h;
+Body p1;
 
 void setup(){
   
@@ -45,6 +46,8 @@ void setup(){
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   
+  player1();
+  
 }
 
 void draw(){
@@ -61,9 +64,16 @@ void draw(){
     println(key);
   }
   
-  /*for(P1 b: players){
-    b.display();
-  }*/
+  Vec2 pos = box2d.getBodyPixelCoord(p1);
+  
+  pushMatrix();
+  translate(pos.x,pos.y);    // Using the Vec2 position            
+  fill(127);
+  stroke(0);
+  strokeWeight(2);
+  rectMode(CENTER);
+  rect(0,0,w,h);
+  popMatrix();
   
 }
 
@@ -73,6 +83,7 @@ void BpFp1(){
   comando.getButton("punch").plug(this, "murro", ControlIO.ON_PRESS);
   comando.getButton("grabWep").plug(this, "Aarma", ControlIO.ON_PRESS);
   comando.getButton("useWep").plug(this, "Uarma", ControlIO.ON_PRESS);
+  comando.getButton("startB").plug(this, "Bstart", ControlIO.ON_PRESS);
   
 }
 
@@ -93,13 +104,11 @@ void salto(){
 
 void murro(){
 
-  println("murros? check");
+  println("murro check");
 
 }
 
-void Aarma(){
-
-  println("apanhar/mudar armas? check");
+void Aarma(){  println("apanhar/mudar armas? check");
 
 }
 
@@ -107,4 +116,39 @@ void Uarma(){
 
   println("usar armas? check");
 
+}
+
+void Bstart(){
+
+ 
+}
+
+void player1(){
+  
+  w = 40;
+  h = 80;
+
+  //definir o corpo
+  BodyDef bd = new BodyDef();
+  bd.type = BodyType.DYNAMIC;
+  bd.position.set(box2d.coordPixelsToWorld(1040,360));
+  
+  //criar o corpo
+  p1 = box2d.createBody(bd);
+
+  //forma
+  PolygonShape ps = new PolygonShape();
+  ps.setAsBox(box2d.scalarPixelsToWorld(w/2), box2d.scalarPixelsToWorld(h/2));
+  
+  //o que cola a forma ao corpo
+  FixtureDef fd = new FixtureDef();
+  fd.shape = ps;
+  //parametros que afetam a fisica do objeto
+  fd.density = 1;
+  fd.friction = 0.3;
+  fd.restitution = 0;
+  
+  //colar a forma ao corpo
+  p1.createFixture(fd);
+  
 }
