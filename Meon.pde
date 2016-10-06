@@ -27,13 +27,23 @@ float fx1;
 float fx2;
 
 Body playerbody;
-Vec2 pos;
+Body platbody;
+Vec2 playerpos;
+Vec2 platpos;
 
-float playerIx = 720;
-float playerIy = 80;
+float playerX = 720;
+float playerY = 80;
+float platX = 640;
+float platY = 680;
+
+float playerlarg = 40;
+float playeralt = 80;
+float platlarg = 1300;
+float platalt = 20;
 
 Player player1;
 Player player2;
+Platforms floor;
 
 void setup(){
   
@@ -56,7 +66,8 @@ void setup(){
   box2d.createWorld();
   
   player1 = new Player();
-  player2 = new Player();
+  //player2 = new Player();
+  floor = new Platforms();
   
 }
 
@@ -68,8 +79,10 @@ void draw(){
   fx1 = comando.getSlider("movX").getValue();
   //fx2 = comando2.getSlider("movX").getValue();
   
+  floor.display();
   player1.display();
-  
+  //player2.display();
+
 }
 
 void BpFp1(){

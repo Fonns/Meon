@@ -1,46 +1,43 @@
 class Player {
-  
-  float w = 40;
-  float h = 80;
 
   Player(){
     
     //definir o corpo
-    BodyDef bd = new BodyDef();
-    bd.type = BodyType.DYNAMIC;
-    bd.position.set(box2d.coordPixelsToWorld(playerIx,playerIy));
+    BodyDef playerbd = new BodyDef();
+    playerbd.type = BodyType.DYNAMIC;
+    playerbd.position.set(box2d.coordPixelsToWorld(playerX,playerY));
   
     //criar o corpo
-    playerbody = box2d.createBody(bd);
+    playerbody = box2d.createBody(playerbd);
 
     //forma
-    PolygonShape ps = new PolygonShape();
-    ps.setAsBox(box2d.scalarPixelsToWorld(w/2), box2d.scalarPixelsToWorld(h/2));
+    PolygonShape playerps = new PolygonShape();
+    playerps.setAsBox(box2d.scalarPixelsToWorld(playerlarg/2), box2d.scalarPixelsToWorld(playeralt/2));
     
     //o que cola a forma ao corpo
-    FixtureDef fd = new FixtureDef();
-    fd.shape = ps;
+    FixtureDef playerfd = new FixtureDef();
+    playerfd.shape = playerps;
     //parametros que afetam a fisica do objeto
-    fd.density = 1;
-    fd.friction = 0.3;
-    fd.restitution = 0;
+    playerfd.density = 1;
+    playerfd.friction = 0;
+    playerfd.restitution = 0;
   
     //colar a forma ao corpo
-    playerbody.createFixture(fd);
+    playerbody.createFixture(playerfd);
     
   }
   
   void display(){
   
-    pos = box2d.getBodyPixelCoord(playerbody);
+    playerpos = box2d.getBodyPixelCoord(playerbody);
   
     pushMatrix();
-    translate(pos.x,pos.y);
+    translate(playerpos.x,playerpos.y);
     fill(127);
     stroke(0);
     strokeWeight(2);
     rectMode(CENTER);
-    rect(0,0,w,h);
+    rect(0,0,playerlarg,playeralt);
     popMatrix();
   
   }
