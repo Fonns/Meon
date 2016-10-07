@@ -26,21 +26,6 @@ Box2DProcessing box2d;
 float fx1;
 float fx2;
 
-Body playerbody;
-Body platbody;
-Vec2 playerpos;
-Vec2 platpos;
-
-float playerX = 720;
-float playerY = 80;
-float platX = 640;
-float platY = 680;
-
-float playerlarg = 40;
-float playeralt = 80;
-float platlarg = 1300;
-float platalt = 20;
-
 Player player1;
 Player player2;
 Platforms floor;
@@ -65,9 +50,9 @@ void setup(){
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   
-  player1 = new Player();
-  //player2 = new Player();
-  floor = new Platforms();
+  player1 = new Player(280, 80, 40, 80);
+  player2 = new Player(1000, 80, 40, 80);
+  floor = new Platforms(640, 680, 1300, 20);
   
 }
 
@@ -81,7 +66,7 @@ void draw(){
   
   floor.display();
   player1.display();
-  //player2.display();
+  player2.display();
 
 }
 

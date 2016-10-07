@@ -1,6 +1,11 @@
 class Player {
 
-  Player(){
+  Vec2 playerPos;
+  Body playerbody;
+  float dPlayerLarg;
+  float dPlayerAlt;
+  
+  Player(float playerX, float playerY, float playerLarg, float playerAlt){
     
     //definir o corpo
     BodyDef playerbd = new BodyDef();
@@ -12,7 +17,7 @@ class Player {
 
     //forma
     PolygonShape playerps = new PolygonShape();
-    playerps.setAsBox(box2d.scalarPixelsToWorld(playerlarg/2), box2d.scalarPixelsToWorld(playeralt/2));
+    playerps.setAsBox(box2d.scalarPixelsToWorld(playerLarg/2), box2d.scalarPixelsToWorld(playerAlt/2));
     
     //o que cola a forma ao corpo
     FixtureDef playerfd = new FixtureDef();
@@ -25,19 +30,22 @@ class Player {
     //colar a forma ao corpo
     playerbody.createFixture(playerfd);
     
+    dPlayerLarg = playerLarg;
+    dPlayerAlt = playerAlt;
+    
   }
   
   void display(){
   
-    playerpos = box2d.getBodyPixelCoord(playerbody);
+    playerPos = box2d.getBodyPixelCoord(playerbody);
   
     pushMatrix();
-    translate(playerpos.x,playerpos.y);
+    translate(playerPos.x,playerPos.y);
     fill(127);
     stroke(0);
     strokeWeight(2);
     rectMode(CENTER);
-    rect(0,0,playerlarg,playeralt);
+    rect(0,0,dPlayerLarg,dPlayerAlt);
     popMatrix();
   
   }

@@ -1,6 +1,11 @@
 class Platforms {
   
-  Platforms(){
+  Vec2 platPos;
+  Body platbody;
+  float dPlatLarg;
+  float dPlatAlt;
+  
+  Platforms(float platX, float platY, float platLarg, float platAlt){
     
     //definir o corpo
     BodyDef platbd = new BodyDef();
@@ -12,7 +17,7 @@ class Platforms {
 
     //forma
     PolygonShape platps = new PolygonShape();
-    platps.setAsBox(box2d.scalarPixelsToWorld(platlarg/2), box2d.scalarPixelsToWorld(platalt/2));
+    platps.setAsBox(box2d.scalarPixelsToWorld(platLarg/2), box2d.scalarPixelsToWorld(platAlt/2));
     
     //o que cola a forma ao corpo
     FixtureDef platfd = new FixtureDef();
@@ -23,21 +28,24 @@ class Platforms {
     platfd.restitution = 0;
   
     //colar a forma ao corpo
-    playerbody.createFixture(platfd);
+    platbody.createFixture(platfd);
+    
+    dPlatLarg = platLarg;
+    dPlatAlt = platAlt;
     
   }
   
   void display(){
     
-    platpos = box2d.getBodyPixelCoord(platbody);
+    platPos = box2d.getBodyPixelCoord(platbody);
     
     pushMatrix();
-    translate(platpos.x,platpos.y);
+    translate(platPos.x,platPos.y);
     fill(127);
     stroke(0);
     strokeWeight(2);
     rectMode(CENTER);
-    rect(0,0,platlarg,platalt);
+    rect(0,0,dPlatLarg,dPlatAlt);
     popMatrix();
   
   }
