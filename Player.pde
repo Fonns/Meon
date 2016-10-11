@@ -50,4 +50,10 @@ class Player {
   
   }
   
+  void sJump (){
+  
+    playerbody.applyLinearImpulse(new Vec2(0, 265), playerbody.getPosition(), true);
+  
+  }
+  
 }

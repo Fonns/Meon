@@ -49,9 +49,10 @@ void setup(){
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
+  box2d.setGravity(0, -50);
   
-  player1 = new Player(280, 80, 40, 80);
-  player2 = new Player(1000, 80, 40, 80);
+  player1 = new Player(280, 80, 25, 35);
+  player2 = new Player(1000, 80, 27, 35);
   floor = new Platforms(640, 680, 1300, 20);
   
 }
@@ -68,54 +69,4 @@ void draw(){
   player1.display();
   player2.display();
 
-}
-
-void BpFp1(){
-  
-  comando.getButton("jump").plug(this, "salto", ControlIO.ON_PRESS);
-  comando.getButton("punch").plug(this, "murro", ControlIO.ON_PRESS);
-  comando.getButton("grabWep").plug(this, "Aarma", ControlIO.ON_PRESS);
-  comando.getButton("useWep").plug(this, "Uarma", ControlIO.ON_PRESS);
-  comando.getButton("startB").plug(this, "Bstart", ControlIO.ON_PRESS);
-  
-}
-
-void BpFp2(){
-  
-  comando2.getButton("jump").plug(this, "salto", ControlIO.ON_PRESS);
-  comando2.getButton("punch").plug(this, "murro", ControlIO.ON_PRESS);
-  comando2.getButton("grapWep").plug(this, "Aarma", ControlIO.ON_PRESS);
-  comando2.getButton("useWep").plug(this, "Uarma", ControlIO.ON_PRESS);
-  comando2.getButton("startB").plug(this, "Bstart", ControlIO.ON_PRESS);
-  
-}
-
-void salto(){
-
-  println("saltos? check");
-  
-}
-
-void murro(){
-
-  println("murro check");
-
-}
-
-void Aarma(){  
-  
-  println("apanhar/mudar armas? check");
-
-}
-
-void Uarma(){
-
-  println("usar armas? check");
-
-}
-
-void Bstart(){
-
-  println(str(fx1));
-  
 }
