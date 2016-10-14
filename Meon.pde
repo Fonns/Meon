@@ -30,43 +30,41 @@ Player player1;
 Player player2;
 Platforms floor;
 
-void setup(){
-  
+void setup() {
+
   size(1280, 720);
   frameRate(60);
-  
-  
+
+
   //inicia o ControlIO (vai ver que comandos estao ligados)
   controlo = ControlIO.getInstance(this);
-  
+
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
   //comando2 = controlo.getMatchedDevice("player2Control");
-  
+
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
   //BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  box2d.setGravity(0, -50);
-  
-  player1 = new Player(280, 80, 25, 35);
+  box2d.setGravity(0, -120);
+
+  player1 = new Player(280, 80, 40, 55);
   player2 = new Player(1000, 80, 27, 35);
-  floor = new Platforms(640, 680, 1300, 20);
-  
+  floor = new Platforms(640, 700, 1300, 80);
 }
 
-void draw(){
-   
-  background(255);
+void draw() {
+
+  background(0);
   box2d.step();
-  
+
   fx1 = comando.getSlider("movX").getValue();
   //fx2 = comando2.getSlider("movX").getValue();
-  
+
   floor.display();
   player1.display();
   player2.display();
-
 }
