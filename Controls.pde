@@ -19,7 +19,7 @@ void BpFp2() {
 void salto() {
 
   println("saltos? check");
-  player1.sJump();
+  player1.gJump();
 }
 
 void murro() {
@@ -45,7 +45,7 @@ void Bstart() {
 void p2salto() {
 
   println("saltos? check");
-  player2.sJump();
+  player2.gJump();
 }
 
 void p2murro() {

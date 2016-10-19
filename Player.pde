@@ -40,16 +40,24 @@ class Player {
 
     pushMatrix();
     translate(playerPos.x, playerPos.y);
-    fill(127);
-    stroke(0);
-    strokeWeight(2);
     rectMode(CENTER);
     rect(0, 0, dPlayerLarg, dPlayerAlt);
     popMatrix();
   }
 
-  void sJump () {
+  void gJump () {
 
-    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass() * 40), playerbody.getPosition(), true);
+    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*40), playerbody.getPosition(), true);
+  }
+
+  void gMove() {
+    if (fx1 > 0) {
+
+      playerbody.applyLinearImpulse(new Vec2(playerbody.getMass()*1/2, 0), playerbody.getPosition(), true);
+    }
+    if(fx1 < 0){
+    
+      playerbody.applyLinearImpulse(new Vec2(-playerbody.getMass()*1/2, 0), playerbody.getPosition(), true);
+    }
   }
 }

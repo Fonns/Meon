@@ -28,13 +28,16 @@ float fx2;
 
 Player player1;
 Player player2;
+
 Platforms floor;
+Platforms sideRight;
+Platforms sideLeft;
+Platforms ceiling;
 
 void setup() {
 
   size(1280, 720);
   frameRate(60);
-
 
   //inicia o ControlIO (vai ver que comandos estao ligados)
   controlo = ControlIO.getInstance(this);
@@ -51,9 +54,14 @@ void setup() {
   box2d.createWorld();
   box2d.setGravity(0, -120);
 
-  player1 = new Player(280, 80, 40, 55);
-  player2 = new Player(1000, 80, 27, 35);
-  floor = new Platforms(640, 700, 1300, 80);
+  player1 = new Player(280, 80, 39, 55);
+  player2 = new Player(1000, 80, 39, 55);
+  
+  floor = new Platforms(640, 720, 1300, 80);
+  sideLeft = new Platforms(0, 360, 1, 3280);
+  sideRight = new Platforms(1280, 360, 1, 3280);
+  ceiling = new Platforms(640, 0, 3280, 1);
+  
 }
 
 void draw() {
@@ -65,6 +73,9 @@ void draw() {
   //fx2 = comando2.getSlider("movX").getValue();
 
   floor.display();
+  
   player1.display();
+  player1.gMove();
+  
   player2.display();
 }

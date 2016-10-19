@@ -40,9 +40,6 @@ class Platforms {
 
     pushMatrix();
     translate(platPos.x, platPos.y);
-    fill(127);
-    stroke(0);
-    strokeWeight(2);
     rectMode(CENTER);
     rect(0, 0, dPlatLarg, dPlatAlt);
     popMatrix();
