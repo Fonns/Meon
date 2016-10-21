@@ -8,15 +8,13 @@ import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
-import org.jbox2d.dynamics.joints.*;
 
 //Game Control Plus: biblioteca controlo (ps4 neste caso)
 import net.java.games.input.*;
 import org.gamecontrolplus.*;
 import org.gamecontrolplus.gui.*;
 
-
-//variaveis
+//Variaveis
 ControlIO controlo;
 ControlDevice comando;
 ControlDevice comando2;
@@ -52,16 +50,15 @@ void setup() {
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  box2d.setGravity(0, -120);
+  box2d.setGravity(0, -90);
 
   player1 = new Player(280, 80, 39, 55);
   player2 = new Player(1000, 80, 39, 55);
-  
+
   floor = new Platforms(640, 720, 1300, 80);
   sideLeft = new Platforms(0, 360, 1, 3280);
   sideRight = new Platforms(1280, 360, 1, 3280);
   ceiling = new Platforms(640, 0, 3280, 1);
-  
 }
 
 void draw() {
@@ -73,9 +70,10 @@ void draw() {
   //fx2 = comando2.getSlider("movX").getValue();
 
   floor.display();
-  
+
   player1.display();
-  player1.gMove();
-  
+  p1Move();
+
   player2.display();
+  p2Move();
 }

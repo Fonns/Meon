@@ -47,17 +47,6 @@ class Player {
 
   void gJump () {
 
-    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*40), playerbody.getPosition(), true);
-  }
-
-  void gMove() {
-    if (fx1 > 0) {
-
-      playerbody.applyLinearImpulse(new Vec2(playerbody.getMass()*1/2, 0), playerbody.getPosition(), true);
-    }
-    if(fx1 < 0){
-    
-      playerbody.applyLinearImpulse(new Vec2(-playerbody.getMass()*1/2, 0), playerbody.getPosition(), true);
-    }
+    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*30), playerbody.getPosition(), true);
   }
 }
