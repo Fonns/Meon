@@ -76,4 +76,16 @@ void draw() {
 
   player2.display();
   p2Move();
+  
+  texts();
+}
+
+void texts(){
+
+  fill(255);
+  textSize(16);
+  textAlign(LEFT);
+  text("HP: "+round(player1.hpoints), 10, 20);
+  textAlign(LEFT);
+  text("HP: "+round(player2.hpoints), 1220, 20);
 }

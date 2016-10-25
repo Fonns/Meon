@@ -4,6 +4,7 @@ class Player {
   Body playerbody;
   float dPlayerLarg;
   float dPlayerAlt;
+  float hpoints;
 
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
 
@@ -32,6 +33,8 @@ class Player {
 
     dPlayerLarg = playerLarg;
     dPlayerAlt = playerAlt;
+    
+    hpoints = 20;
   }
 
   void display() {
