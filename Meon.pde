@@ -8,6 +8,7 @@ import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.contacts.*;
 
 //Game Control Plus: biblioteca controlo (ps4 neste caso)
 import net.java.games.input.*;
@@ -32,6 +33,10 @@ Platforms sideRight;
 Platforms sideLeft;
 Platforms ceiling;
 
+WeaponPUP weaponpup;
+
+Bullets bullet;
+
 void setup() {
 
   size(1280, 720);
@@ -51,6 +56,7 @@ void setup() {
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   box2d.setGravity(0, -90);
+  box2d.listenForCollisions();
 
   player1 = new Player(280, 80, 39, 55);
   player2 = new Player(1000, 80, 39, 55);
@@ -59,6 +65,8 @@ void setup() {
   sideLeft = new Platforms(0, 360, 1, 3280);
   sideRight = new Platforms(1280, 360, 1, 3280);
   ceiling = new Platforms(640, 0, 3280, 1);
+
+  weaponpup = new WeaponPUP(450, 570, 20, 20);
 }
 
 void draw() {
@@ -76,11 +84,45 @@ void draw() {
 
   player2.display();
   p2Move();
-  
+
   texts();
+
+  weaponpup.display();
+  
+  //BULLET!!
+  if(bullet != null){
+    bullet.display();
+  }
 }
 
-void texts(){
+//SUPER IMPORTANTE!!! (bulet stuff))
+
+
+void beginContact(Contact c) {
+  Body bA = c.getFixtureA().getBody();
+  Body bB = c.getFixtureB().getBody();
+
+  Object oA = bA.getUserData();
+  Object oB = bB.getUserData();
+  if (oA == null || oB == null) {
+    return;
+  }
+  if (oA.getClass() == Player.class && oB.getClass() == WeaponPUP.class) {
+    Player p = (Player)oA;
+    WeaponPUP w = (WeaponPUP)oB;
+    p.addweapon();
+  }
+  if (oB.getClass() == Player.class && oA.getClass() == WeaponPUP.class) {
+    Player p = (Player)oB;
+    WeaponPUP w = (WeaponPUP)oA;
+    p.addweapon();
+  }
+}
+
+void endContact(Contact c) {
+}
+
+void texts() {
 
   fill(255);
   textSize(16);

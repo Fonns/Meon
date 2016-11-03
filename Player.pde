@@ -6,6 +6,9 @@ class Player {
   float dPlayerAlt;
   float hpoints;
 
+  //criar uma lista para as armas
+  ArrayList<Weapons> weapons;
+
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
 
     //definir o corpo
@@ -33,8 +36,12 @@ class Player {
 
     dPlayerLarg = playerLarg;
     dPlayerAlt = playerAlt;
-    
+
     hpoints = 20;
+
+    playerbody.setUserData(this);
+
+    weapons = new ArrayList<Weapons>();
   }
 
   void display() {
@@ -46,6 +53,16 @@ class Player {
     rectMode(CENTER);
     rect(0, 0, dPlayerLarg, dPlayerAlt);
     popMatrix();
+  }
+
+
+  void addweapon() {
+
+    weapons.add(new Pistols());
+    println("pistola");
+
+    //weapons.add(new Grenade());
+    //println("granada");
   }
 
   void gJump () {
