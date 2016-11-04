@@ -23,6 +23,7 @@ class WeaponPUP {
     //o que cola a forma ao corpo
     FixtureDef weappupfd = new FixtureDef();
     weappupfd.shape = weappupps;
+
     //parametros que afetam a fisica do objeto
     weappupfd.density = 1;
     weappupfd.friction = 0;

@@ -7,7 +7,7 @@ class Player {
   float hpoints;
 
   //criar uma lista para as armas
-  ArrayList<Weapons> weapons;
+  ArrayList<Weapon> weapons;
 
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
 
@@ -26,6 +26,7 @@ class Player {
     //o que cola a forma ao corpo
     FixtureDef playerfd = new FixtureDef();
     playerfd.shape = playerps;
+    
     //parametros que afetam a fisica do objeto
     playerfd.density = 1;
     playerfd.friction = 0;
@@ -41,7 +42,7 @@ class Player {
 
     playerbody.setUserData(this);
 
-    weapons = new ArrayList<Weapons>();
+    weapons = new ArrayList<Weapon>();
   }
 
   void display() {
@@ -55,10 +56,9 @@ class Player {
     popMatrix();
   }
 
-
   void addweapon() {
 
-    weapons.add(new Pistols());
+    weapons.add(new Pistol());
     println("pistola");
 
     //weapons.add(new Grenade());
@@ -67,6 +67,6 @@ class Player {
 
   void gJump () {
 
-    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*30), playerbody.getPosition(), true);
+    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
   }
 }
