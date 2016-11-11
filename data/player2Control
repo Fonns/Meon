@@ -4,4 +4,3 @@ punch	Murros	1	BUTTON	Button 0	0	0.0	0.0
 jump	Saltar	1	BUTTON	Button 1	0	0.0	0.0
 grabWep	Agarrar armas	1	BUTTON	Button 3	0	0.0	0.0
 useWep	Utilizar armas	1	BUTTON	Button 5	0	0.0	0.0
-startB	Botão Start	1	BUTTON	Button 9	0	0.0	0.0

@@ -33,9 +33,27 @@ Platform sideRight;
 Platform sideLeft;
 Platform ceiling;
 
-WeaponPUP weaponpup;
+//s: small, m: medium,  b: big | b: bottom, m: middle, t: top
+Platform stleft;
+Platform smleft;
+Platform sbleft;
 
-Bullet bullet;
+Platform stright;
+Platform smright;
+Platform sbright;
+
+Platform mbleft;
+Platform mtleft;
+
+Platform mbright;
+Platform mtright;
+
+Platform bbcenter;
+Platform btcenter;
+
+ArrayList<Bullet> bullets;
+
+//WeaponPUP weaponpup;
 
 void setup() {
 
@@ -47,11 +65,11 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  comando2 = controlo.getMatchedDevice("player2Control");
+  //comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  BpFp2();
+  //BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -65,8 +83,28 @@ void setup() {
   sideLeft = new Platform(0, 360, 1, 3280);
   sideRight = new Platform(1280, 360, 1, 3280);
   ceiling = new Platform(640, 0, 3280, 1);
+  
+  stleft = new Platform(60, 90, 240, 10);
+  smleft = new Platform(60, 340, 120, 10);
+  sbleft = new Platform(60, 590, 120, 10);
+  
+  stright = new Platform(1220, 90, 240, 10);
+  smright = new Platform(1220, 340, 120, 10);
+  sbright = new Platform(1220, 590, 120, 10);
+  
+  mbleft = new Platform(390, 520, 330, 10);
+  mtleft = new Platform(390, 270, 330, 10);
 
-  weaponpup = new WeaponPUP(450, 570, 20, 20);
+  mbright = new Platform(890, 520, 330, 10);
+  mtright = new Platform(890, 270, 330, 10);
+
+  bbcenter = new Platform(640, 150, 500, 10);
+  btcenter = new Platform(640, 400, 500, 10);
+  
+  
+  bullets = new ArrayList<Bullet>();
+  
+  //weaponpup = new WeaponPUP(450, 570, 20, 20);
 }
 
 void draw() {
@@ -75,9 +113,22 @@ void draw() {
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();
-  fx2 = comando2.getSlider("movX").getValue();
+  //fx2 = comando2.getSlider("movX").getValue();
 
   floor.display();
+  stleft.display();
+  smleft.display();
+  sbleft.display();
+  stright.display();
+  smright.display();
+  sbright.display();
+  mbleft.display();
+  mtleft.display();
+  mbright.display();
+  mtright.display();
+  bbcenter.display();
+  btcenter.display();
+  
 
   player1.display();
   p1Move();
@@ -86,8 +137,12 @@ void draw() {
   p2Move();
 
   texts();
-
-  weaponpup.display();
+  
+  //weaponpup.display();
+  
+  for (int i=0; i<bullets.size(); i++) {
+    bullets.get(i).display();
+  }
 }
 
 void texts() {

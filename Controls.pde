@@ -31,7 +31,8 @@ void Aarma() {
 
 void Uarma() {
 
-  println("usar armas? check");
+  println("usar armas? check");  
+  bullets.add(new Bullet(player1.playerPos.x + 20, player1.playerPos.y, 5, 5));
 }
 
 void p2salto() {

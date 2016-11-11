@@ -1,11 +1,11 @@
 class Player {
 
   Vec2 playerPos;
+  float hpoints;
   Body playerbody;
   float dPlayerLarg;
   float dPlayerAlt;
-  float hpoints;
-
+  
   //criar uma lista para as armas
   ArrayList<Weapon> weapons;
 
@@ -26,7 +26,7 @@ class Player {
     //o que cola a forma ao corpo
     FixtureDef playerfd = new FixtureDef();
     playerfd.shape = playerps;
-    
+
     //parametros que afetam a fisica do objeto
     playerfd.density = 1;
     playerfd.friction = 0;
@@ -58,11 +58,8 @@ class Player {
 
   void addweapon() {
 
-    weapons.add(new Pistol());
-    println("pistola");
-
-    //weapons.add(new Grenade());
-    //println("granada");
+    //weapons.add(new Pistol());
+    //println("pistola");
   }
 
   void gJump () {

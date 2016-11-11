@@ -12,7 +12,25 @@ class Pistol extends Weapon {
   Pistol() {
 
     ammo = 6;
-    damage = 3;
+    damage = 1;
+  }
+}
+
+class Rifle extends Weapon {
+
+  Rifle() {
+
+    ammo = 4;
+    damage = 2;
+  }
+}
+
+class Shotgun extends Weapon {
+
+  Shotgun() {
+
+    ammo = 2;
+    damage = 8;
   }
 }
 
@@ -22,7 +40,7 @@ class Grenade extends Weapon {
   Grenade() {
 
     ammo = 1;
-    damage = 4;
+    damage = 6;
   }
 }
 
@@ -32,7 +50,7 @@ class Bazuka extends Weapon {
   Bazuka() {
 
     ammo = 1;
-    damage = 10;
+    damage = 14;
   }
 }
 

@@ -1,5 +1,5 @@
 class Platform {
-
+  
   Vec2 platPos;
   Body platbody;
   float dPlatLarg;
@@ -22,7 +22,7 @@ class Platform {
     //o que cola a forma ao corpo
     FixtureDef platfd = new FixtureDef();
     platfd.shape = platps;
-    
+
     //parametros que afetam a fisica do objeto
     platfd.density = 1;
     platfd.friction = 0.5;
