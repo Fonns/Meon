@@ -24,6 +24,9 @@ Box2DProcessing box2d;
 
 float fx1;
 float fx2;
+float fx1dir, fx2dir;
+
+Vec2 bulletDir;
 
 Player player1;
 Player player2;
@@ -54,6 +57,8 @@ void setup() {
 
   player1 = new Player(280, 80, 39, 55);
   player2 = new Player(1000, 80, 39, 55);
+  
+  bulletDir = new Vec2(100, 0);
 
   Platform floor = new Platform(640, 720, 1300, 80);
   Platform sideLeft = new Platform(0, 360, 1, 3280);
@@ -113,6 +118,7 @@ void draw() {
 
   for (int i = 0; i<bullets.size(); i++) {
     bullets.get(i).display();
+    bullets.get(i).destroy();
   }
   
   texts();

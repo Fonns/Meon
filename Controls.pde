@@ -31,8 +31,14 @@ void Aarma() {
 
 void Uarma() {
 
-  println("usar armas? check");  
-  bullets.add(new Bullet(player1.playerPos.x + 20, player1.playerPos.y, 5, 5));
+  println("usar armas? check");
+  if (fx1dir < 0) {
+    bulletDir = new Vec2 (-100, 0);
+    bullets.add(new Bullet(player1.playerPos.x - 20, player1.playerPos.y, 5, 5));
+  } else {
+    bulletDir = new Vec2 (100, 0);
+    bullets.add(new Bullet(player1.playerPos.x + 20, player1.playerPos.y, 5, 5));
+  }
 }
 
 void p2salto() {
@@ -53,6 +59,13 @@ void p2Aarma() {
 void p2Uarma() {
 
   println("usar armas? check");
+  if (fx2dir < 0) {
+    bulletDir = new Vec2 (-100, 0);
+    bullets.add(new Bullet(player2.playerPos.x - 20, player2.playerPos.y, 5, 5));
+  } else {
+    bulletDir = new Vec2 (100, 0);
+    bullets.add(new Bullet(player2.playerPos.x + 20, player2.playerPos.y, 5, 5));
+  }
 }
 
 void p1Move() {
@@ -64,10 +77,12 @@ void p1Move() {
   if (fx1 > 0) {
 
     player1.playerbody.setLinearVelocity(new Vec2(25, vel.y));
+    fx1dir = 1;
   }
   if (fx1 < 0) {
 
     player1.playerbody.setLinearVelocity(new Vec2(-25, vel.y));
+    fx1dir = -1;
   }
   if (fx1 <= 0 && fx1 >= 0) {
 
@@ -84,10 +99,12 @@ void p2Move() {
   if (fx2 > 0) {
 
     player2.playerbody.setLinearVelocity(new Vec2(25, vel2.y));
+    fx2dir = 1;
   }
   if (fx2 < 0) {
 
     player2.playerbody.setLinearVelocity(new Vec2(-25, vel2.y));
+    fx2dir = -1;
   }
   if (fx2 <= 0 && fx2 >= 0) {
 

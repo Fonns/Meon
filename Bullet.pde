@@ -1,9 +1,10 @@
 class Bullet {
-  
+
   Vec2 bulletPos;
   Body bulletbody;
   float dbulletLarg;
   float dbulletAlt;
+  boolean destroys;
 
   Bullet(float bulletX, float bulletY, float bulletLarg, float bulletAlt) {
 
@@ -33,9 +34,11 @@ class Bullet {
 
     dbulletLarg = bulletLarg;
     dbulletAlt = bulletAlt;
-    
-    bulletbody.applyLinearImpulse(new Vec2(100, 0), bulletbody.getWorldCenter(), true);
+
+    bulletbody.applyLinearImpulse(bulletDir, bulletbody.getWorldCenter(), true);
     //bulletbody.setLinearVelocity(new Vec2(25, 0));
+
+    bulletbody.setUserData(this);
   }
 
   void display() {
@@ -48,9 +51,13 @@ class Bullet {
     rect(0, 0, dbulletLarg, dbulletAlt);
     popMatrix();
   }
-  
+
   void destroy() {
 
-    println("pistola");
+    if (destroys == true) {
+      println("pistola");
+      bullets.remove(this);
+      box2d.destroyBody(bulletbody);
+    }
   }
 }

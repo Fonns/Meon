@@ -33,6 +33,8 @@ class Platform {
 
     dPlatLarg = platLarg;
     dPlatAlt = platAlt;
+    
+    platbody.setUserData(this);
   }
 
   void display() {
