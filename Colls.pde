@@ -9,10 +9,10 @@ void beginContact(Contact contPoint) {
   Object obj1 = body1.getUserData();
   Object obj2 = body2.getUserData();
   
-  if(obj1 == null || obj2 == null){
+  /*if(obj1 == null || obj2 == null){
   
     return;
-  }
+  }*/
 
   if (obj1.getClass() == Bullet.class && obj2.getClass() == Platform.class) {
 
