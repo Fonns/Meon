@@ -28,8 +28,8 @@ float fx1dir, fx2dir;
 
 Vec2 bulletDir;
 
-Player player1;
-Player player2;
+PlayerOne player1;
+PlayerTwo player2;
 
 ArrayList<Bullet> bullets;
 ArrayList<Platform> platforms;
@@ -44,20 +44,20 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  //comando2 = controlo.getMatchedDevice("player2Control");
+  comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  //BpFp2();
+  BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   box2d.setGravity(0, -90);
   box2d.listenForCollisions();
 
-  player1 = new Player(280, 80, 39, 55);
-  player2 = new Player(1000, 80, 39, 55);
-  
+  player1 = new PlayerOne(280, 80, 39, 55);
+  player2 = new PlayerTwo(1000, 80, 39, 55);
+
   bulletDir = new Vec2(100, 0);
 
   Platform floor = new Platform(640, 720, 1300, 80);
@@ -76,7 +76,7 @@ void setup() {
   Platform mtright = new Platform(890, 270, 330, 10);
   Platform bbcenter = new Platform(640, 150, 500, 10);
   Platform btcenter = new Platform(640, 400, 500, 10);
-  
+
   platforms = new ArrayList<Platform>();
   platforms.add(floor);
   platforms.add(sideLeft);
@@ -94,7 +94,7 @@ void setup() {
   platforms.add(mtright);
   platforms.add(bbcenter);
   platforms.add(btcenter);
-  
+
   bullets = new ArrayList<Bullet>();
 }
 
@@ -104,9 +104,9 @@ void draw() {
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();
-  //fx2 = comando2.getSlider("movX").getValue();
-  
-  for(int i=0; i<platforms.size(); i++){
+  fx2 = comando2.getSlider("movX").getValue();
+
+  for (int i=0; i<platforms.size(); i++) {
     platforms.get(i).display();
   }
 
@@ -120,8 +120,23 @@ void draw() {
     bullets.get(i).display();
     bullets.get(i).destroy();
   }
-  
+
   texts();
+
+  if (player2.hpoints < 1) {
+
+    background(0);
+    fill(255);
+    textSize(36);
+    textAlign(CENTER);
+    text("Player 1 wins!!", 640, 250);
+  } else if (player1.hpoints < 1) {
+    background(0);
+    fill(255);
+    textSize(36);
+    textAlign(CENTER);
+    text("Player 2 wins!!", 640, 250);
+  }
 }
 
 void texts() {

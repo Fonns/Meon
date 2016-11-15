@@ -17,6 +17,13 @@ void BpFp2() {
 void salto() {
 
   player1.gJump();
+  if (player1.hpoints < 1 || player2.hpoints <1) {
+
+    player1.destroy();
+    player2.destroy();
+    player1 = new PlayerOne(280, 80, 39, 55);
+    player2 = new PlayerTwo(1000, 80, 39, 55);
+  }
 }
 
 void murro() {
@@ -34,16 +41,23 @@ void Uarma() {
   println("usar armas? check");
   if (fx1dir < 0) {
     bulletDir = new Vec2 (-100, 0);
-    bullets.add(new Bullet(player1.playerPos.x - 20, player1.playerPos.y, 5, 5));
+    bullets.add(new Bullet(player1.playerPos.x - 35, player1.playerPos.y-10, 5, 5));
   } else {
     bulletDir = new Vec2 (100, 0);
-    bullets.add(new Bullet(player1.playerPos.x + 20, player1.playerPos.y, 5, 5));
+    bullets.add(new Bullet(player1.playerPos.x + 35, player1.playerPos.y-10, 5, 5));
   }
 }
 
 void p2salto() {
 
   player2.gJump();
+  if (player1.hpoints < 1 || player2.hpoints <1) {
+
+    player1.destroy();
+    player2.destroy();
+    player1 = new PlayerOne(280, 80, 39, 55);
+    player2 = new PlayerTwo(1000, 80, 39, 55);
+  }
 }
 
 void p2murro() {
@@ -61,10 +75,10 @@ void p2Uarma() {
   println("usar armas? check");
   if (fx2dir < 0) {
     bulletDir = new Vec2 (-100, 0);
-    bullets.add(new Bullet(player2.playerPos.x - 20, player2.playerPos.y, 5, 5));
+    bullets.add(new Bullet(player2.playerPos.x - 35, player2.playerPos.y -10, 5, 5));
   } else {
     bulletDir = new Vec2 (100, 0);
-    bullets.add(new Bullet(player2.playerPos.x + 20, player2.playerPos.y, 5, 5));
+    bullets.add(new Bullet(player2.playerPos.x + 35, player2.playerPos.y -10, 5, 5));
   }
 }
 
