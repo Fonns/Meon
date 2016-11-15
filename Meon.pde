@@ -53,7 +53,7 @@ Platform btcenter;
 
 ArrayList<Bullet> bullets;
 
-//WeaponPUP weaponpup;
+WeaponPUP weaponpup;
 
 void setup() {
 
@@ -83,15 +83,15 @@ void setup() {
   sideLeft = new Platform(0, 360, 1, 3280);
   sideRight = new Platform(1280, 360, 1, 3280);
   ceiling = new Platform(640, 0, 3280, 1);
-  
+
   stleft = new Platform(60, 90, 240, 10);
   smleft = new Platform(60, 340, 120, 10);
   sbleft = new Platform(60, 590, 120, 10);
-  
+
   stright = new Platform(1220, 90, 240, 10);
   smright = new Platform(1220, 340, 120, 10);
   sbright = new Platform(1220, 590, 120, 10);
-  
+
   mbleft = new Platform(390, 520, 330, 10);
   mtleft = new Platform(390, 270, 330, 10);
 
@@ -100,11 +100,11 @@ void setup() {
 
   bbcenter = new Platform(640, 150, 500, 10);
   btcenter = new Platform(640, 400, 500, 10);
-  
-  
+
+
   bullets = new ArrayList<Bullet>();
-  
-  //weaponpup = new WeaponPUP(450, 570, 20, 20);
+
+  weaponpup = new WeaponPUP(450, 570, 20, 20);
 }
 
 void draw() {
@@ -128,7 +128,7 @@ void draw() {
   mtright.display();
   bbcenter.display();
   btcenter.display();
-  
+
 
   player1.display();
   p1Move();
@@ -137,10 +137,10 @@ void draw() {
   p2Move();
 
   texts();
-  
+
   //weaponpup.display();
-  
-  for (int i=0; i<bullets.size(); i++) {
+
+  for (int i = 0; i<bullets.size(); i++) {
     bullets.get(i).display();
   }
 }

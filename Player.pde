@@ -59,7 +59,7 @@ class Player {
   void addweapon() {
 
     //weapons.add(new Pistol());
-    //println("pistola");
+    println("pistola");
   }
 
   void gJump () {
