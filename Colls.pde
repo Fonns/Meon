@@ -1,31 +1,28 @@
 void beginContact(Contact contPoint) {
 
-  Body bodyA = contPoint.getFixtureA().getBody();
-  Body bodyB = contPoint.getFixtureB().getBody();
+  Fixture fix1 = contPoint.getFixtureA();
+  Fixture fix2 = contPoint.getFixtureB();
 
-  Object objectA = bodyA.getUserData();
-  Object objectB = bodyB.getUserData();
-  if (objectA == null || objectB == null) {
+  Body body1 = fix1.getBody();
+  Body body2 = fix2.getBody();
+
+  Object obj1 = body1.getUserData();
+  Object obj2 = body2.getUserData();
+  
+  if(obj1 == null || obj2 == null){
+  
     return;
-  } else if (objectA.getClass() == Player.class && objectB.getClass() == WeaponPUP.class) {
+  }
 
-    Player player = (Player)objectA;
-    WeaponPUP weaponPUP = (WeaponPUP)objectB;
-    player.addweapon();
-  } else if (objectB.getClass() == Player.class && objectA.getClass() == WeaponPUP.class) {
+  if (obj1.getClass() == Bullet.class && obj2.getClass() == Platform.class) {
 
-    Player player = (Player)objectB;
-    WeaponPUP weaponPUP = (WeaponPUP)objectA;
-    player.addweapon();
-  } else if (objectA.getClass() == Platform.class && objectB.getClass() == Bullet.class) {
-
-    Platform platform = (Platform)objectA;
-    Bullet bullet = (Bullet)objectB;
+    Bullet bullet = (Bullet) obj1;
     bullet.destroy();
-  } else if (objectB.getClass() == Platform.class && objectA.getClass() == Bullet.class) {
+  }
 
-    Platform platform = (Platform)objectB;
-    Bullet bullet = (Bullet)objectA;
+  if (obj2.getClass() == Bullet.class && obj1.getClass() == Platform.class) {
+
+    Bullet bullet = (Bullet) obj2;
     bullet.destroy();
   }
 }

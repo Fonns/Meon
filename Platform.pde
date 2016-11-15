@@ -1,5 +1,5 @@
 class Platform {
-  
+
   Vec2 platPos;
   Body platbody;
   float dPlatLarg;
