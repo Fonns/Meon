@@ -1,8 +1,3 @@
-//Sprites: biblioteca de sprites (arte do jogo)
-import sprites.*;
-import sprites.maths.*;
-import sprites.utils.*;
-
 //Box2D for Processing: biblioteca de physX (mais outra)
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
@@ -34,6 +29,9 @@ PlayerTwo player2;
 ArrayList<Bullet> bullets;
 ArrayList<Platform> platforms;
 
+PImage plat;
+PImage bg;
+
 void setup() {
 
   size(1280, 720);
@@ -57,6 +55,9 @@ void setup() {
 
   player1 = new PlayerOne(280, 80, 39, 55);
   player2 = new PlayerTwo(1000, 80, 39, 55);
+  
+  player1.remainJump = 3;
+  player2.remainJump = 3;
 
   bulletDir = new Vec2(100, 0);
 
@@ -96,11 +97,14 @@ void setup() {
   platforms.add(btcenter);
 
   bullets = new ArrayList<Bullet>();
+  
+  plat = loadImage("PlatBig.png");
+  bg = loadImage("Backg.png");
 }
 
 void draw() {
 
-  background(0);
+  background(bg);
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();

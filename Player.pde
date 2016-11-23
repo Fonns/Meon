@@ -7,6 +7,7 @@ class PlayerOne {
   Body playerbody;
   float dPlayerLarg;
   float dPlayerAlt;
+  int remainJump;
 
   //criar uma lista para as armas
   ArrayList<Weapon> weapons;
@@ -66,7 +67,11 @@ class PlayerOne {
 
   void gJump () {
 
-    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
+    remainJump -= 1;
+    
+    if(remainJump > 0){
+      playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
+    }
   }
   
   void destroy(){
@@ -82,6 +87,7 @@ class PlayerTwo{
   Body playerbody;
   float dPlayerLarg;
   float dPlayerAlt;
+  int remainJump;
 
   //criar uma lista para as armas
   ArrayList<Weapon> weapons;
@@ -141,7 +147,11 @@ class PlayerTwo{
 
   void gJump () {
 
-    playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
+    remainJump -= 1;
+    
+    if(remainJump > 0){
+      playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
+    }
   }
   
   void destroy(){

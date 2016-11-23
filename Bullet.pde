@@ -15,6 +15,7 @@ class Bullet {
     bulletbd.position.set(box2d.coordPixelsToWorld(bulletX, bulletY));
 
     //criar o corpo
+    println(bulletbd);
     bulletbody = box2d.createBody(bulletbd);
 
     //forma

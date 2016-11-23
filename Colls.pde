@@ -50,6 +50,26 @@ void beginContact(Contact cp) {
     bullet.destroys = true;
     player2.hpoints -= 1;
   }
+  
+  if(obj1.getClass() == PlayerOne.class && obj2.getClass() == Platform.class){
+  
+    player1.remainJump = 3;
+  }
+  
+  if(obj2.getClass() == Platform.class && obj1.getClass() == PlayerOne.class){
+  
+    player1.remainJump = 3;
+  }
+  
+  if(obj1.getClass() == PlayerTwo.class && obj2.getClass() == Platform.class){
+  
+    player2.remainJump = 3;
+  }
+  
+  if(obj2.getClass() == Platform.class && obj1.getClass() == PlayerTwo.class){
+  
+    player2.remainJump = 3;
+  }
 }
 
 void endContact(Contact cp) {

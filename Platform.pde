@@ -4,6 +4,7 @@ class Platform {
   Body platbody;
   float dPlatLarg;
   float dPlatAlt;
+  
 
   Platform(float platX, float platY, float platLarg, float platAlt) {
 
@@ -43,8 +44,8 @@ class Platform {
 
     pushMatrix();
     translate(platPos.x, platPos.y);
-    rectMode(CENTER);
-    rect(0, 0, dPlatLarg, dPlatAlt);
+    imageMode(CENTER);
+    image(plat, 0, 0, dPlatLarg, dPlatAlt);
     popMatrix();
   }
 }
