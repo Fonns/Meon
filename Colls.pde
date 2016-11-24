@@ -61,12 +61,32 @@ void beginContact(Contact cp) {
     player1.remainJump = 3;
   }
   
+  if(obj1.getClass() == PlayerOne.class && obj2.getClass() == Floor.class){
+  
+    player1.remainJump = 3;
+  }
+  
+  if(obj2.getClass() == Floor.class && obj1.getClass() == PlayerOne.class){
+  
+    player1.remainJump = 3;
+  }
+  
   if(obj1.getClass() == PlayerTwo.class && obj2.getClass() == Platform.class){
   
     player2.remainJump = 3;
   }
   
   if(obj2.getClass() == Platform.class && obj1.getClass() == PlayerTwo.class){
+  
+    player2.remainJump = 3;
+  }
+  
+  if(obj1.getClass() == PlayerTwo.class && obj2.getClass() == Floor.class){
+  
+    player2.remainJump = 3;
+  }
+  
+  if(obj2.getClass() == Floor.class && obj1.getClass() == PlayerTwo.class){
   
     player2.remainJump = 3;
   }

@@ -4,7 +4,7 @@ class Platform {
   Body platbody;
   float dPlatLarg;
   float dPlatAlt;
-  
+  PImage platImg;
 
   Platform(float platX, float platY, float platLarg, float platAlt) {
 
@@ -45,7 +45,27 @@ class Platform {
     pushMatrix();
     translate(platPos.x, platPos.y);
     imageMode(CENTER);
-    image(plat, 0, 0, dPlatLarg, dPlatAlt);
+    image(platI, 0, 0, dPlatLarg, dPlatAlt);
+    popMatrix();
+  }
+}
+
+class Floor extends Platform {
+  
+  Floor(float platX, float platY, float platLarg, float platAlt){
+  
+    super(platX, platY, platLarg, platAlt);
+  }
+  
+  void display() {
+
+    platPos = box2d.getBodyPixelCoord(platbody);
+    platImg = platI;
+
+    pushMatrix();
+    translate(platPos.x, platPos.y);
+    imageMode(CENTER);
+    image(floorI, 0, 0, dPlatLarg, dPlatAlt);
     popMatrix();
   }
 }

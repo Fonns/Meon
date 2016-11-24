@@ -29,8 +29,10 @@ PlayerTwo player2;
 ArrayList<Bullet> bullets;
 ArrayList<Platform> platforms;
 
-PImage plat;
-PImage bg;
+PImage platI;
+PImage platImg;
+PImage bgI;
+PImage floorI;
 
 void setup() {
 
@@ -42,11 +44,11 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  comando2 = controlo.getMatchedDevice("player2Control");
+  //comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  BpFp2();
+  //BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -61,7 +63,7 @@ void setup() {
 
   bulletDir = new Vec2(100, 0);
 
-  Platform floor = new Platform(640, 720, 1300, 80);
+  Floor floor = new Floor(640, 720, 1300, 80);
   Platform sideLeft = new Platform(0, 360, 1, 3280);
   Platform sideRight = new Platform(1280, 360, 1, 3280);
   Platform ceiling = new Platform(640, 0, 3280, 1);
@@ -98,17 +100,18 @@ void setup() {
 
   bullets = new ArrayList<Bullet>();
   
-  plat = loadImage("PlatBig.png");
-  bg = loadImage("Backg.png");
+  platI = loadImage("PlatBig.png");
+  floorI = loadImage("floor.png");
+  bgI = loadImage("Backg.png");
 }
 
 void draw() {
 
-  background(bg);
+  background(bgI);
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();
-  fx2 = comando2.getSlider("movX").getValue();
+  //fx2 = comando2.getSlider("movX").getValue();
 
   for (int i=0; i<platforms.size(); i++) {
     platforms.get(i).display();
@@ -145,7 +148,7 @@ void draw() {
 
 void texts() {
 
-  fill(255);
+  fill(0);
   textSize(16);
   textAlign(LEFT);
   text("HP: "+round(player1.hpoints), 10, 20);
