@@ -35,7 +35,8 @@ class Bullet {
 
     dbulletLarg = bulletLarg;
     dbulletAlt = bulletAlt;
-
+    
+    bulletbody.setGravityScale(0);
     bulletbody.applyLinearImpulse(bulletDir, bulletbody.getWorldCenter(), true);
     //bulletbody.setLinearVelocity(new Vec2(25, 0));
 

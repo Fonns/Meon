@@ -130,14 +130,14 @@ void draw() {
 
   texts();
 
-  if (player2.hpoints < 1) {
+  if (player2.hpoints < 0.5) {
 
     background(0);
     fill(255);
     textSize(36);
     textAlign(CENTER);
     text("Player 1 wins!!", 640, 250);
-  } else if (player1.hpoints < 1) {
+  } else if (player1.hpoints < 0.5) {
     background(0);
     fill(255);
     textSize(36);
@@ -148,7 +148,7 @@ void draw() {
 
 void texts() {
 
-  fill(0);
+  fill(255);
   textSize(16);
   textAlign(LEFT);
   text("HP: "+round(player1.hpoints), 10, 20);
