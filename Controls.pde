@@ -30,10 +30,12 @@ void murro() {
 
   println("murro check");
   float critHit = random(99);
-  if (critHit < 1) {
-    player2.hpoints -= 20;
-  } else {
-    player2.hpoints -= 0.5;
+  if () {
+    if (critHit < 1) {
+      player2.hpoints -= 20;
+    } else {
+      player2.hpoints -= 0.5;
+    }
   }
 }
 
@@ -73,10 +75,12 @@ void p2murro() {
 
   println("murro check");
   float critHit = random(99);
-  if (critHit < 1) {
-    player1.hpoints -= 20;
-  } else {
-    player1.hpoints -= 0.5;
+  if () {
+    if (critHit < 1) {
+      player1.hpoints -= 20;
+    } else {
+      player1.hpoints -= 0.5;
+    }
   }
 }
 
