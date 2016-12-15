@@ -45,12 +45,15 @@ void Aarma() {
 void Uarma() {
 
   println("usar armas? check");
-  if (fx1dir < 0) {
-    bulletDir = new Vec2 (-100, 0);
-    bullets.add(new Bullet(player1.playerPos.x - 35, player1.playerPos.y-10, 5, 5));
-  } else {
-    bulletDir = new Vec2 (100, 0);
-    bullets.add(new Bullet(player1.playerPos.x + 35, player1.playerPos.y-10, 5, 5));
+  if (player1.ammo > 0) {
+    player1.ammo -=1;
+    if (fx1dir < 0) {
+      bulletDir = new Vec2 (-100, 0);
+      bullets.add(new Bullet(player1.playerPos.x - 35, player1.playerPos.y-10, 5, 5));
+    } else {
+      bulletDir = new Vec2 (100, 0);
+      bullets.add(new Bullet(player1.playerPos.x + 35, player1.playerPos.y-10, 5, 5));
+    }
   }
 }
 
@@ -85,12 +88,16 @@ void p2Aarma() {
 void p2Uarma() {
 
   println("usar armas? check");
-  if (fx2dir < 0) {
-    bulletDir = new Vec2 (-100, 0);
-    bullets.add(new Bullet(player2.playerPos.x - 35, player2.playerPos.y -10, 5, 5));
-  } else {
-    bulletDir = new Vec2 (100, 0);
-    bullets.add(new Bullet(player2.playerPos.x + 35, player2.playerPos.y -10, 5, 5));
+
+  if (player2.ammo > 0) {
+    player2.ammo -=1;
+    if (fx2dir < 0) {
+      bulletDir = new Vec2 (-100, 0);
+      bullets.add(new Bullet(player2.playerPos.x - 35, player2.playerPos.y -10, 5, 5));
+    } else {
+      bulletDir = new Vec2 (100, 0);
+      bullets.add(new Bullet(player2.playerPos.x + 35, player2.playerPos.y -10, 5, 5));
+    }
   }
 }
 

@@ -6,6 +6,7 @@ class Player {
   float dPlayerLarg;
   float dPlayerAlt;
   int remainJump;
+  int damage, ammo;
 
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
 
@@ -37,6 +38,8 @@ class Player {
     dPlayerAlt = playerAlt;
 
     hpoints = 5;
+    damage = 1;
+    ammo = 0;
 
     playerbody.setUserData(this);
   }

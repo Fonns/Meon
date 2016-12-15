@@ -25,7 +25,7 @@ void beginContact(Contact cp) {
   
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
-    player1.hpoints -= 1;
+    player1.hpoints -= player2.damage;
     
   }
   
@@ -33,14 +33,14 @@ void beginContact(Contact cp) {
   
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
-    player1.hpoints -= 1;
+    player1.hpoints -= player2.damage;
   }
   
   if(obj1.getClass() == Bullet.class && obj2.getClass() == PlayerTwo.class){
   
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
-    player2.hpoints -= 1;
+    player2.hpoints -= player1.damage;
     
   }
   
@@ -48,7 +48,7 @@ void beginContact(Contact cp) {
   
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
-    player2.hpoints -= 1;
+    player2.hpoints -= player1.damage;
   }
   
   if(obj1.getClass() == PlayerOne.class && obj2.getClass() == Platform.class){
