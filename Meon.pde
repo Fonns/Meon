@@ -10,6 +10,8 @@ import net.java.games.input.*;
 import org.gamecontrolplus.*;
 import org.gamecontrolplus.gui.*;
 
+import processing.sound.*;
+
 //Variaveis
 ControlIO controlo;
 ControlDevice comando;
@@ -35,7 +37,8 @@ PImage platImg;
 PImage bgI;
 PImage floorI;
 
-
+SoundFile mainTheme;
+SoundFile punchHit, punchCritHit;
 
 void setup() {
 
@@ -109,6 +112,16 @@ void setup() {
   platI = loadImage("PlatBig.png");
   floorI = loadImage("floor.png");
   bgI = loadImage("Backg.png");
+
+  mainTheme = new SoundFile(this, "mainSound.mp3");
+  mainTheme.amp(0.15);
+  mainTheme.loop();
+
+  punchHit = new SoundFile(this, "punchHit.mp3");
+  punchHit.rate(0.5);
+
+  punchCritHit = new SoundFile(this, "punchCritHit.mp3");
+  punchCritHit.rate(0.5);
 }
 
 void draw() {

@@ -35,8 +35,10 @@ void murro() {
   if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
     if (critHit < 24) {
       player2.hpoints -= 20;
+      punchCritHit.play();
     } else {
       player2.hpoints -= 0.5;
+      punchHit.play();
     }
   }
 }
@@ -82,8 +84,10 @@ void p2murro() {
   if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
     if (critHit < 24) {
       player1.hpoints -= 20;
+      punchCritHit.play();
     } else {
       player1.hpoints -= 0.5;
+      punchHit.play();
     }
   }
 }
