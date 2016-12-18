@@ -23,6 +23,8 @@ void salto() {
     player2.destroy();
     player1 = new PlayerOne(280, 80, 39, 55);
     player2 = new PlayerTwo(1000, 80, 39, 55);
+    p1Pos = player1.playerbody.getPosition();
+    p2Pos = player2.playerbody.getPosition();
   }
 }
 
@@ -30,8 +32,8 @@ void murro() {
 
   println("murro check");
   float critHit = random(99);
-  if () {
-    if (critHit < 1) {
+  if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
+    if (critHit < 24) {
       player2.hpoints -= 20;
     } else {
       player2.hpoints -= 0.5;
@@ -68,6 +70,8 @@ void p2salto() {
     player2.destroy();
     player1 = new PlayerOne(280, 80, 39, 55);
     player2 = new PlayerTwo(1000, 80, 39, 55);
+    p1Pos = player1.playerbody.getPosition();
+    p2Pos = player2.playerbody.getPosition();
   }
 }
 
@@ -75,8 +79,8 @@ void p2murro() {
 
   println("murro check");
   float critHit = random(99);
-  if () {
-    if (critHit < 1) {
+  if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
+    if (critHit < 24) {
       player1.hpoints -= 20;
     } else {
       player1.hpoints -= 0.5;

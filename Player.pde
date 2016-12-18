@@ -37,7 +37,7 @@ class Player {
     dPlayerLarg = playerLarg;
     dPlayerAlt = playerAlt;
 
-    hpoints = 5;
+    hpoints = 99;
     damage = 1;
     ammo = 0;
 
@@ -59,30 +59,30 @@ class Player {
   void gJump () {
 
     remainJump -= 1;
-    
-    if(remainJump > 0){
+
+    if (remainJump > 0) {
       playerbody.applyLinearImpulse(new Vec2(0, playerbody.getMass()*34), playerbody.getPosition(), true);
     }
   }
-  
-  void destroy(){
-  
+
+  void destroy() {
+
     box2d.destroyBody(playerbody);
   }
 }
 
-class PlayerOne extends Player{
+class PlayerOne extends Player {
 
-    PlayerOne(float playerX, float playerY, float playerLarg, float playerAlt){
-    
-      super(playerX, playerY, playerLarg, playerAlt);
-    }
+  PlayerOne(float playerX, float playerY, float playerLarg, float playerAlt) {
+
+    super(playerX, playerY, playerLarg, playerAlt);
+  }
 }
 
-class PlayerTwo extends Player{
+class PlayerTwo extends Player {
 
-    PlayerTwo(float playerX, float playerY, float playerLarg, float playerAlt){
-    
-      super(playerX, playerY, playerLarg, playerAlt);
-    }
+  PlayerTwo(float playerX, float playerY, float playerLarg, float playerAlt) {
+
+    super(playerX, playerY, playerLarg, playerAlt);
+  }
 }

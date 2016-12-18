@@ -20,74 +20,72 @@ void beginContact(Contact cp) {
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
   }
-  
-  if(obj1.getClass() == Bullet.class && obj2.getClass() == PlayerOne.class){
-  
+
+  if (obj1.getClass() == Bullet.class && obj2.getClass() == PlayerOne.class) {
+
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
     player1.hpoints -= player2.damage;
-    
   }
-  
-  if(obj2.getClass() == Bullet.class && obj1.getClass() == PlayerOne.class){
-  
+
+  if (obj2.getClass() == Bullet.class && obj1.getClass() == PlayerOne.class) {
+
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
     player1.hpoints -= player2.damage;
   }
-  
-  if(obj1.getClass() == Bullet.class && obj2.getClass() == PlayerTwo.class){
-  
+
+  if (obj1.getClass() == Bullet.class && obj2.getClass() == PlayerTwo.class) {
+
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
     player2.hpoints -= player1.damage;
-    
   }
-  
-  if(obj2.getClass() == Bullet.class && obj1.getClass() == PlayerTwo.class){
-  
+
+  if (obj2.getClass() == Bullet.class && obj1.getClass() == PlayerTwo.class) {
+
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
     player2.hpoints -= player1.damage;
   }
-  
-  if(obj1.getClass() == PlayerOne.class && obj2.getClass() == Platform.class){
-  
+
+  if (obj1.getClass() == PlayerOne.class && obj2.getClass() == Platform.class) {
+
     player1.remainJump = 3;
   }
-  
-  if(obj2.getClass() == Platform.class && obj1.getClass() == PlayerOne.class){
-  
+
+  if (obj2.getClass() == Platform.class && obj1.getClass() == PlayerOne.class) {
+
     player1.remainJump = 3;
   }
-  
-  if(obj1.getClass() == PlayerOne.class && obj2.getClass() == Floor.class){
-  
+
+  if (obj1.getClass() == PlayerOne.class && obj2.getClass() == Floor.class) {
+
     player1.remainJump = 3;
   }
-  
-  if(obj2.getClass() == Floor.class && obj1.getClass() == PlayerOne.class){
-  
+
+  if (obj2.getClass() == Floor.class && obj1.getClass() == PlayerOne.class) {
+
     player1.remainJump = 3;
   }
-  
-  if(obj1.getClass() == PlayerTwo.class && obj2.getClass() == Platform.class){
-  
+
+  if (obj1.getClass() == PlayerTwo.class && obj2.getClass() == Platform.class) {
+
     player2.remainJump = 3;
   }
-  
-  if(obj2.getClass() == Platform.class && obj1.getClass() == PlayerTwo.class){
-  
+
+  if (obj2.getClass() == Platform.class && obj1.getClass() == PlayerTwo.class) {
+
     player2.remainJump = 3;
   }
-  
-  if(obj1.getClass() == PlayerTwo.class && obj2.getClass() == Floor.class){
-  
+
+  if (obj1.getClass() == PlayerTwo.class && obj2.getClass() == Floor.class) {
+
     player2.remainJump = 3;
   }
-  
-  if(obj2.getClass() == Floor.class && obj1.getClass() == PlayerTwo.class){
-  
+
+  if (obj2.getClass() == Floor.class && obj1.getClass() == PlayerTwo.class) {
+
     player2.remainJump = 3;
   }
 }

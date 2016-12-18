@@ -34,7 +34,7 @@ class Platform {
 
     dPlatLarg = platLarg;
     dPlatAlt = platAlt;
-    
+
     platbody.setUserData(this);
   }
 
@@ -51,12 +51,12 @@ class Platform {
 }
 
 class Floor extends Platform {
-  
-  Floor(float platX, float platY, float platLarg, float platAlt){
-  
+
+  Floor(float platX, float platY, float platLarg, float platAlt) {
+
     super(platX, platY, platLarg, platAlt);
   }
-  
+
   void display() {
 
     platPos = box2d.getBodyPixelCoord(platbody);

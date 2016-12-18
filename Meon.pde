@@ -22,6 +22,7 @@ float fx2;
 float fx1dir, fx2dir;
 
 Vec2 bulletDir;
+Vec2 p1Pos, p2Pos;
 
 PlayerOne player1;
 PlayerTwo player2;
@@ -33,6 +34,8 @@ PImage platI;
 PImage platImg;
 PImage bgI;
 PImage floorI;
+
+
 
 void setup() {
 
@@ -57,9 +60,12 @@ void setup() {
 
   player1 = new PlayerOne(280, 80, 39, 55);
   player2 = new PlayerTwo(1000, 80, 39, 55);
-  
+
   player1.remainJump = 3;
   player2.remainJump = 3;
+
+  p1Pos = player1.playerbody.getPosition();
+  p2Pos = player2.playerbody.getPosition();
 
   bulletDir = new Vec2(100, 0);
 
@@ -99,7 +105,7 @@ void setup() {
   platforms.add(btcenter);
 
   bullets = new ArrayList<Bullet>();
-  
+
   platI = loadImage("PlatBig.png");
   floorI = loadImage("floor.png");
   bgI = loadImage("Backg.png");

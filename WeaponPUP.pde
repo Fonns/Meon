@@ -52,14 +52,14 @@ class WeaponPUP {
 }
 
 class Pistol extends WeaponPUP {
-  
-  Pistol(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
-  
+
+  Pistol(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
     super(weappupX, weappupY, weappupLarg, weappupAlt);
     ammo = 6;
     damage = 1;
   }
-  
+
   void display() {
 
     weappupPos = box2d.getBodyPixelCoord(weappupbody);
@@ -73,14 +73,14 @@ class Pistol extends WeaponPUP {
 }
 
 class Rifle extends WeaponPUP {
-  
-  Rifle(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
-  
+
+  Rifle(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
     super(weappupX, weappupY, weappupLarg, weappupAlt);
     ammo = 4;
     damage = 2;
   }
-  
+
   void display() {
 
     weappupPos = box2d.getBodyPixelCoord(weappupbody);
@@ -94,14 +94,14 @@ class Rifle extends WeaponPUP {
 }
 
 class Shotgun extends WeaponPUP {
-  
-  Shotgun(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
-  
+
+  Shotgun(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
     super(weappupX, weappupY, weappupLarg, weappupAlt);
     ammo = 2;
     damage = 8;
   }
-  
+
   void display() {
 
     weappupPos = box2d.getBodyPixelCoord(weappupbody);
@@ -115,35 +115,35 @@ class Shotgun extends WeaponPUP {
 }
 
 /*class Grenade extends WeaponPUP {
-  
-  Grenade(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
-  
-    super(weappupX, weappupY, weappupLarg, weappupAlt);
-    ammo = 1;
-    damage = 6;
-  }
-  
-  void display() {
-
-    weappupPos = box2d.getBodyPixelCoord(weappupbody);
-
-    pushMatrix();
-    translate(weappupPos.x, weappupPos.y);
-    rectMode(CENTER);
-    rect(0, 0, dWeappupLarg, dWeappupAlt);
-    popMatrix();
-  }
-}*/
+ 
+ Grenade(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
+ 
+ super(weappupX, weappupY, weappupLarg, weappupAlt);
+ ammo = 1;
+ damage = 6;
+ }
+ 
+ void display() {
+ 
+ weappupPos = box2d.getBodyPixelCoord(weappupbody);
+ 
+ pushMatrix();
+ translate(weappupPos.x, weappupPos.y);
+ rectMode(CENTER);
+ rect(0, 0, dWeappupLarg, dWeappupAlt);
+ popMatrix();
+ }
+ }*/
 
 class Bazuka extends WeaponPUP {
-  
-  Bazuka(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
-  
+
+  Bazuka(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
     super(weappupX, weappupY, weappupLarg, weappupAlt);
     ammo = 1;
     damage = 14;
   }
-  
+
   void display() {
 
     weappupPos = box2d.getBodyPixelCoord(weappupbody);
