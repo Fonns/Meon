@@ -5,12 +5,13 @@ class WeaponPUP {
   float dWeappupLarg;
   float dWeappupAlt;
   int ammo, damage;
+  boolean destroys;
 
   WeaponPUP(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
 
     //definir o corpo
     BodyDef weappupbd = new BodyDef();
-    weappupbd.type = BodyType.STATIC;
+    weappupbd.type = BodyType.DYNAMIC;
     weappupbd.position.set(box2d.coordPixelsToWorld(weappupX, weappupY));
 
     //criar o corpo
@@ -27,7 +28,7 @@ class WeaponPUP {
 
     //parametros que afetam a fisica do objeto
     weappupfd.density = 1;
-    weappupfd.friction = 0;
+    weappupfd.friction = 1;
     weappupfd.restitution = 0;
 
     //colar a forma ao corpo
@@ -70,6 +71,14 @@ class Pistol extends WeaponPUP {
     rect(0, 0, dWeappupLarg, dWeappupAlt);
     popMatrix();
   }
+
+  void destroy() {
+
+    if (destroys == true) {
+      pistols.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
+  }
 }
 
 class Rifle extends WeaponPUP {
@@ -88,31 +97,40 @@ class Rifle extends WeaponPUP {
     pushMatrix();
     translate(weappupPos.x, weappupPos.y);
     rectMode(CENTER);
+    fill(96);
     rect(0, 0, dWeappupLarg, dWeappupAlt);
     popMatrix();
   }
-}
 
-class Shotgun extends WeaponPUP {
+  void destroy() {
 
-  Shotgun(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
-
-    super(weappupX, weappupY, weappupLarg, weappupAlt);
-    ammo = 2;
-    damage = 8;
-  }
-
-  void display() {
-
-    weappupPos = box2d.getBodyPixelCoord(weappupbody);
-
-    pushMatrix();
-    translate(weappupPos.x, weappupPos.y);
-    rectMode(CENTER);
-    rect(0, 0, dWeappupLarg, dWeappupAlt);
-    popMatrix();
+    if (destroys == true) {
+      rifles.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
   }
 }
+
+/*class Shotgun extends WeaponPUP {
+ 
+ Shotgun(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+ 
+ super(weappupX, weappupY, weappupLarg, weappupAlt);
+ ammo = 2;
+ damage = 8;
+ }
+ 
+ void display() {
+ 
+ weappupPos = box2d.getBodyPixelCoord(weappupbody);
+ 
+ pushMatrix();
+ translate(weappupPos.x, weappupPos.y);
+ rectMode(CENTER);
+ rect(0, 0, dWeappupLarg, dWeappupAlt);
+ popMatrix();
+ }
+ }*/
 
 /*class Grenade extends WeaponPUP {
  
@@ -151,7 +169,16 @@ class Bazuka extends WeaponPUP {
     pushMatrix();
     translate(weappupPos.x, weappupPos.y);
     rectMode(CENTER);
+    fill(204, 0, 0);
     rect(0, 0, dWeappupLarg, dWeappupAlt);
     popMatrix();
+  }
+
+  void destroy() {
+
+    if (destroys == true) {
+      bazukas.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
   }
 }

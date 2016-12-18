@@ -1,3 +1,11 @@
+//sprites
+import sprites.*;
+import sprites.maths.*;
+import sprites.utils.*;
+
+//gui stuff
+import g4p_controls.*;
+
 //Box2D for Processing: biblioteca de physX (mais outra)
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
@@ -10,6 +18,7 @@ import net.java.games.input.*;
 import org.gamecontrolplus.*;
 import org.gamecontrolplus.gui.*;
 
+//sound
 import processing.sound.*;
 
 //Variaveis
@@ -31,6 +40,9 @@ PlayerTwo player2;
 
 ArrayList<Bullet> bullets;
 ArrayList<Platform> platforms;
+ArrayList<Pistol> pistols;
+ArrayList<Rifle> rifles;
+ArrayList<Bazuka> bazukas;
 
 PImage platI;
 PImage platImg;
@@ -39,6 +51,8 @@ PImage floorI;
 
 SoundFile mainTheme;
 SoundFile punchHit, punchCritHit;
+
+int spawns;
 
 void setup() {
 
@@ -108,6 +122,9 @@ void setup() {
   platforms.add(btcenter);
 
   bullets = new ArrayList<Bullet>();
+  pistols = new ArrayList<Pistol>();
+  rifles = new ArrayList<Rifle>();
+  bazukas = new ArrayList<Bazuka>();
 
   platI = loadImage("PlatBig.png");
   floorI = loadImage("floor.png");
@@ -147,7 +164,24 @@ void draw() {
     bullets.get(i).destroy();
   }
 
+  for (int i = 0; i<pistols.size(); i++) {
+    pistols.get(i).display();
+    pistols.get(i).destroy();
+  }
+
+  for (int i = 0; i<rifles.size(); i++) {
+    rifles.get(i).display();
+    rifles.get(i).destroy();
+  }
+
+  for (int i = 0; i<bazukas.size(); i++) {
+    bazukas.get(i).display();
+    bazukas.get(i).destroy();
+  }
+
   texts();
+
+  spawnSys();
 
   if (player2.hpoints < 0.5) {
 

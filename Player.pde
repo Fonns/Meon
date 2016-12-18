@@ -37,8 +37,8 @@ class Player {
     dPlayerLarg = playerLarg;
     dPlayerAlt = playerAlt;
 
-    hpoints = 99;
-    damage = 1;
+    hpoints = 100;
+    damage = 0;
     ammo = 0;
 
     playerbody.setUserData(this);
