@@ -69,11 +69,11 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  //comando2 = controlo.getMatchedDevice("player2Control");
+  comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  //BpFp2();
+  BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -157,7 +157,7 @@ void draw() {
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();
-  //fx2 = comando2.getSlider("movX").getValue();
+  fx2 = comando2.getSlider("movX").getValue();
 
   for (int i=0; i<platforms.size(); i++) {
     platforms.get(i).display();

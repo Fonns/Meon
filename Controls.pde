@@ -32,7 +32,7 @@ void murro() {
 
   println("murro check");
   float critHit = random(99);
-  if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
+  if (abs(p1Pos.x - p2Pos.x) < 8 && abs(p1Pos.y - p2Pos.y) < 8) {
     if (critHit < 24) {
       player2.hpoints -= 20;
       punchCritHit.play();
@@ -81,7 +81,7 @@ void p2murro() {
 
   println("murro check");
   float critHit = random(99);
-  if (abs(p1Pos.x - p2Pos.x) < 5.5 && abs(p1Pos.y - p2Pos.y) < 3) {
+  if (abs(p1Pos.x - p2Pos.x) < 8 && abs(p1Pos.y - p2Pos.y) < 8) {
     if (critHit < 24) {
       player1.hpoints -= 20;
       punchCritHit.play();
