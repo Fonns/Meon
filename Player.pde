@@ -77,6 +77,21 @@ class PlayerOne extends Player {
 
     super(playerX, playerY, playerLarg, playerAlt);
   }
+
+  void display() {
+
+    playerPos = box2d.getBodyPixelCoord(playerbody);
+
+    pushMatrix();
+    translate(playerPos.x, playerPos.y);
+    imageMode(CENTER);
+    if (fx1dir < 0) {
+      image(p1StillL, 0, 0, dPlayerLarg, dPlayerAlt);
+    } else {
+      image(p1Still, 0, 0, dPlayerLarg, dPlayerAlt);
+    }
+    popMatrix();
+  }
 }
 
 class PlayerTwo extends Player {
@@ -84,5 +99,20 @@ class PlayerTwo extends Player {
   PlayerTwo(float playerX, float playerY, float playerLarg, float playerAlt) {
 
     super(playerX, playerY, playerLarg, playerAlt);
+  }
+
+  void display() {
+
+    playerPos = box2d.getBodyPixelCoord(playerbody);
+
+    pushMatrix();
+    translate(playerPos.x, playerPos.y);
+    imageMode(CENTER);
+    if (fx2dir < 0) {
+      image(p2StillL, 0, 0, dPlayerLarg, dPlayerAlt);
+    } else {
+      image(p2Still, 0, 0, dPlayerLarg, dPlayerAlt);
+    }
+    popMatrix();
   }
 }

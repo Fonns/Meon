@@ -48,11 +48,16 @@ PImage platI;
 PImage platImg;
 PImage bgI;
 PImage floorI;
+PImage p1Still, p2Still, p1StillL, p2StillL;
 
 SoundFile mainTheme;
 SoundFile punchHit, punchCritHit;
 
 int spawns;
+
+String p1TextWep, p2TextWep;
+
+boolean p1Pick, p2Pick;
 
 void setup() {
 
@@ -130,8 +135,13 @@ void setup() {
   floorI = loadImage("floor.png");
   bgI = loadImage("Backg.png");
 
+  p1Still = loadImage("p1Still.png");
+  p2Still = loadImage("p2Still.png");
+  p1StillL = loadImage("p1StillL.png");
+  p2StillL = loadImage("p2StillL.png");
+
   mainTheme = new SoundFile(this, "mainSound.mp3");
-  mainTheme.amp(0.15);
+  mainTheme.amp(0.05);
   mainTheme.loop();
 
   punchHit = new SoundFile(this, "punchHit.mp3");
@@ -179,6 +189,14 @@ void draw() {
     bazukas.get(i).destroy();
   }
 
+  if (player1.ammo <= 0) {
+    p1TextWep = "Fists";
+  }
+  
+  if (player2.ammo <= 0) {
+    p2TextWep = "Fists";
+  }
+
   texts();
 
   spawnSys();
@@ -203,8 +221,10 @@ void texts() {
 
   fill(255);
   textSize(16);
-  textAlign(LEFT);
-  text("HP: "+round(player1.hpoints), 10, 20);
-  textAlign(LEFT);
-  text("HP: "+round(player2.hpoints), 1220, 20);
+  textAlign(CENTER);
+  text("HP: "+round(player1.hpoints), 40, 20);
+  text(p1TextWep + "  " + player1.ammo, 40, 40);
+  textAlign(CENTER);
+  text("HP: "+round(player2.hpoints), 1240, 20);
+  text(p2TextWep + "  " + player2.ammo, 1240, 40);
 }

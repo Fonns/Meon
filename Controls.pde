@@ -95,6 +95,10 @@ void p2murro() {
 void p2Aarma() {  
 
   println("apanhar/mudar armas? check");
+  p2Pick = true;
+  if (p2Pick == true) {
+    p2Pick = false;
+  }
 }
 
 void p2Uarma() {
