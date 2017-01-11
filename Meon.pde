@@ -54,10 +54,10 @@ SoundFile mainTheme;
 SoundFile punchHit, punchCritHit;
 
 int spawns;
+int startTimer;
+int p1startTimer, p2startTimer;
 
 String p1TextWep, p2TextWep;
-
-boolean p1Pick, p2Pick;
 
 void setup() {
 
@@ -69,11 +69,11 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  comando2 = controlo.getMatchedDevice("player2Control");
+  //comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  BpFp2();
+  //BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -139,6 +139,8 @@ void setup() {
   p2Still = loadImage("p2Still.png");
   p1StillL = loadImage("p1StillL.png");
   p2StillL = loadImage("p2StillL.png");
+  
+  startTimer = 0;
 
   mainTheme = new SoundFile(this, "mainSound.mp3");
   mainTheme.amp(0.05);
@@ -157,7 +159,7 @@ void draw() {
   box2d.step();
 
   fx1 = comando.getSlider("movX").getValue();
-  fx2 = comando2.getSlider("movX").getValue();
+  //fx2 = comando2.getSlider("movX").getValue();
 
   for (int i=0; i<platforms.size(); i++) {
     platforms.get(i).display();
@@ -200,6 +202,16 @@ void draw() {
   texts();
 
   spawnSys();
+  
+  if (millis() - p1startTimer > 1000) {
+    player1.pickEnable = false;
+    println("yey");
+  }
+  
+  if (millis() - p2startTimer > 1000) {
+    player2.pickEnable = false;
+    println("yey");
+  }
 
   if (player2.hpoints < 0.5) {
 

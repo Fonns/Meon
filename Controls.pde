@@ -46,6 +46,8 @@ void murro() {
 void Aarma() {  
 
   println("apanhar/mudar armas? check");
+  player1.pickEnable = true;
+  p1startTimer = millis();
 }
 
 void Uarma() {
@@ -95,10 +97,8 @@ void p2murro() {
 void p2Aarma() {  
 
   println("apanhar/mudar armas? check");
-  p2Pick = true;
-  if (p2Pick == true) {
-    p2Pick = false;
-  }
+  player2.pickEnable = true;
+  p2startTimer = millis();
 }
 
 void p2Uarma() {

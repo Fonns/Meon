@@ -7,6 +7,7 @@ class Player {
   float dPlayerAlt;
   int remainJump;
   int damage, ammo;
+  boolean pickEnable;
 
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
 
@@ -40,6 +41,7 @@ class Player {
     hpoints = 100;
     damage = 0;
     ammo = 0;
+    pickEnable = false;
 
     playerbody.setUserData(this);
   }

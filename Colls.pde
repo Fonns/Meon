@@ -49,37 +49,37 @@ void beginContact(Contact cp) {
     bullet.destroys = true;
     player2.hpoints -= player1.damage;
   }
-  
+
   if (obj1.getClass() == Bullet.class && obj2.getClass() == Pistol.class) {
 
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
   }
-  
+
   if (obj2.getClass() == Bullet.class && obj1.getClass() == Pistol.class) {
 
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
   }
-  
+
   if (obj1.getClass() == Bullet.class && obj2.getClass() == Rifle.class) {
 
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
   }
-  
+
   if (obj1.getClass() == Bullet.class && obj2.getClass() == Rifle.class) {
 
     Bullet bullet = (Bullet) obj2;
     bullet.destroys = true;
   }
-  
+
   if (obj1.getClass() == Bullet.class && obj2.getClass() == Bazuka.class) {
 
     Bullet bullet = (Bullet) obj1;
     bullet.destroys = true;
   }
-  
+
   if (obj2.getClass() == Bullet.class && obj1.getClass() == Bazuka.class) {
 
     Bullet bullet = (Bullet) obj2;
@@ -129,7 +129,7 @@ void beginContact(Contact cp) {
 
   //pistolPU
   if (obj1.getClass() == Pistol.class && obj2.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Pistol pistol = (Pistol) obj1;
       pistol.destroys = true;
       player1.ammo = 6;
@@ -140,7 +140,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj2.getClass() == Pistol.class && obj1.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Pistol pistol = (Pistol) obj2;
       pistol.destroys = true;
       player1.ammo = 6;
@@ -151,7 +151,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj1.getClass() == Pistol.class && obj2.getClass() == PlayerTwo.class) {
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Pistol pistol = (Pistol) obj1;
       pistol.destroys = true;
       player2.ammo = 6;
@@ -162,7 +162,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj2.getClass() == Pistol.class && obj1.getClass() == PlayerTwo.class) {
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Pistol pistol = (Pistol) obj2;
       pistol.destroys = true;
       player2.ammo = 6;
@@ -174,7 +174,7 @@ void beginContact(Contact cp) {
 
   //riflePU
   if (obj1.getClass() == Rifle.class && obj2.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Rifle rifle = (Rifle) obj1;
       rifle.destroys = true;
       player1.ammo = 4;
@@ -185,7 +185,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj2.getClass() == Rifle.class && obj1.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Rifle rifle = (Rifle) obj2;
       rifle.destroys = true;
       player1.ammo = 4;
@@ -196,7 +196,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj1.getClass() == Rifle.class && obj2.getClass() == PlayerTwo.class) {
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Rifle rifle = (Rifle) obj1;
       rifle.destroys = true;
       player2.ammo = 4;
@@ -207,7 +207,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj2.getClass() == Rifle.class && obj1.getClass() == PlayerTwo.class) {
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Rifle rifle = (Rifle) obj2;
       rifle.destroys = true;
       player2.ammo = 4;
@@ -219,7 +219,7 @@ void beginContact(Contact cp) {
 
   //bazukaPU
   if (obj1.getClass() == Bazuka.class && obj2.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Bazuka bazuka = (Bazuka) obj1;
       bazuka.destroys = true;
       player1.ammo = 1;
@@ -230,7 +230,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj2.getClass() == Bazuka.class && obj1.getClass() == PlayerOne.class) {
-    if (player1.ammo <= 0) {
+    if (player1.pickEnable == true || player1.ammo <= 0) {
       Bazuka bazuka = (Bazuka) obj2;
       bazuka.destroys = true;
       player1.ammo = 1;
@@ -241,7 +241,7 @@ void beginContact(Contact cp) {
   }
 
   if (obj1.getClass() == Bazuka.class && obj2.getClass() == PlayerTwo.class) {
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Bazuka bazuka = (Bazuka) obj1;
       bazuka.destroys = true;
       player2.ammo = 1;
@@ -253,7 +253,7 @@ void beginContact(Contact cp) {
 
   if (obj2.getClass() == Bazuka.class && obj1.getClass() == PlayerTwo.class) {
 
-    if (player2.ammo <= 0) {
+    if (player2.pickEnable == true || player2.ammo <= 0) {
       Bazuka bazuka = (Bazuka) obj2;
       bazuka.destroys = true;
       player2.ammo = 1;
@@ -262,8 +262,6 @@ void beginContact(Contact cp) {
       spawns -=1;
     }
   }
-  
-  
 }
 
 void endContact(Contact cp) {
