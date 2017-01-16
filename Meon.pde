@@ -40,6 +40,8 @@ PImage platI;
 PImage platImg;
 PImage bgI;
 PImage mainMenuI;
+PImage menuCredits;
+PImage menuSettings;
 PImage floorI;
 PImage p1Still, p2Still, p1StillL, p2StillL;
 
@@ -54,6 +56,8 @@ String p1TextWep, p2TextWep;
 int gameState = 0;
 final int stateMMenu = 0;
 final int stateGame = 1;
+final int stateMenuCredits = 2;
+final int stateMenuSettings = 3;
 
 void setup() {
 
@@ -132,6 +136,8 @@ void setup() {
 
   bgI = loadImage("Backg.png");
   mainMenuI = loadImage("mainMenu.png");
+  menuCredits = loadImage("menuCredits.png");
+  menuSettings = loadImage("menuSettings.png");
 
   p1Still = loadImage("p1Still.png");
   p2Still = loadImage("p2Still.png");
@@ -157,14 +163,33 @@ void draw() {
     if (mousePressed) {
       println("x: " + mouseX + "; y:" + mouseY);
     }
-
+     
+    //jogar
     if (mousePressed && mouseX > 41 && mouseY > 36 && mouseX < 136 && mouseY < 99) {
       gameState = 1;
     }
     
+    //creditos
+    if (mousePressed && mouseX > 43 && mouseY > 144 && mouseX < 218 && mouseY < 202) {
+      gameState = 2;
+    }
+    
+    //settings
+    if (mousePressed && mouseX > 45 && mouseY > 232 && mouseX < 238 && mouseY < 302) {
+      gameState = 3;
+    }
+    
+    //quit
     if (mousePressed && mouseX > 41 && mouseY > 427 && mouseX < 141 && mouseY < 487) {
       exit();
     }
+    break;
+    
+  case stateMenuCredits:
+    background(menuCredits);
+    break;
+  case stateMenuSettings:
+    background(menuSettings);
     break;
   case stateGame:
     background(bgI);
