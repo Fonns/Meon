@@ -1,11 +1,3 @@
-//sprites
-import sprites.*;
-import sprites.maths.*;
-import sprites.utils.*;
-
-//gui stuff
-import g4p_controls.*;
-
 //Box2D for Processing: biblioteca de physX (mais outra)
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
@@ -47,10 +39,10 @@ ArrayList<Bazuka> bazukas;
 PImage platI;
 PImage platImg;
 PImage bgI;
+PImage mainMenuI;
 PImage floorI;
 PImage p1Still, p2Still, p1StillL, p2StillL;
 
-SoundFile mainTheme;
 SoundFile punchHit, punchCritHit;
 
 int spawns;
@@ -58,6 +50,10 @@ int startTimer;
 int p1startTimer, p2startTimer;
 
 String p1TextWep, p2TextWep;
+
+int gameState = 0;
+final int stateMMenu = 0;
+final int stateGame = 1;
 
 void setup() {
 
@@ -133,18 +129,16 @@ void setup() {
 
   platI = loadImage("PlatBig.png");
   floorI = loadImage("floor.png");
+
   bgI = loadImage("Backg.png");
+  mainMenuI = loadImage("mainMenu.png");
 
   p1Still = loadImage("p1Still.png");
   p2Still = loadImage("p2Still.png");
   p1StillL = loadImage("p1StillL.png");
   p2StillL = loadImage("p2StillL.png");
-  
-  startTimer = 0;
 
-  mainTheme = new SoundFile(this, "mainSound.mp3");
-  mainTheme.amp(0.05);
-  mainTheme.loop();
+  startTimer = 0;
 
   punchHit = new SoundFile(this, "punchHit.mp3");
   punchHit.rate(0.5);
@@ -155,77 +149,97 @@ void setup() {
 
 void draw() {
 
-  background(bgI);
-  box2d.step();
+  switch(gameState) {
 
-  fx1 = comando.getSlider("movX").getValue();
-  //fx2 = comando2.getSlider("movX").getValue();
+  case stateMMenu:
+    background(mainMenuI);
 
-  for (int i=0; i<platforms.size(); i++) {
-    platforms.get(i).display();
-  }
+    if (mousePressed) {
+      println("x: " + mouseX + "; y:" + mouseY);
+    }
 
-  player1.display();
-  p1Move();
+    if (mousePressed && mouseX > 41 && mouseY > 36 && mouseX < 136 && mouseY < 99) {
+      gameState = 1;
+    }
+    
+    if (mousePressed && mouseX > 41 && mouseY > 427 && mouseX < 141 && mouseY < 487) {
+      exit();
+    }
+    break;
+  case stateGame:
+    background(bgI);
+    box2d.step();
 
-  player2.display();
-  p2Move();
+    fx1 = comando.getSlider("movX").getValue();
+    //fx2 = comando2.getSlider("movX").getValue();
 
-  for (int i = 0; i<bullets.size(); i++) {
-    bullets.get(i).display();
-    bullets.get(i).destroy();
-  }
+    for (int i=0; i<platforms.size(); i++) {
+      platforms.get(i).display();
+    }
 
-  for (int i = 0; i<pistols.size(); i++) {
-    pistols.get(i).display();
-    pistols.get(i).destroy();
-  }
+    player1.display();
+    p1Move();
 
-  for (int i = 0; i<rifles.size(); i++) {
-    rifles.get(i).display();
-    rifles.get(i).destroy();
-  }
+    player2.display();
+    p2Move();
 
-  for (int i = 0; i<bazukas.size(); i++) {
-    bazukas.get(i).display();
-    bazukas.get(i).destroy();
-  }
+    for (int i = 0; i<bullets.size(); i++) {
+      bullets.get(i).display();
+      bullets.get(i).destroy();
+    }
 
-  if (player1.ammo <= 0) {
-    p1TextWep = "Fists";
-  }
-  
-  if (player2.ammo <= 0) {
-    p2TextWep = "Fists";
-  }
+    for (int i = 0; i<pistols.size(); i++) {
+      pistols.get(i).display();
+      pistols.get(i).destroy();
+    }
 
-  texts();
+    for (int i = 0; i<rifles.size(); i++) {
+      rifles.get(i).display();
+      rifles.get(i).destroy();
+    }
 
-  spawnSys();
-  
-  if (millis() - p1startTimer > 1000) {
-    player1.pickEnable = false;
-    println("yey");
-  }
-  
-  if (millis() - p2startTimer > 1000) {
-    player2.pickEnable = false;
-    println("yey");
-  }
+    for (int i = 0; i<bazukas.size(); i++) {
+      bazukas.get(i).display();
+      bazukas.get(i).destroy();
+    }
 
-  if (player2.hpoints < 0.5) {
+    if (player1.ammo <= 0) {
+      p1TextWep = "Fists";
+    }
 
-    background(0);
-    fill(255);
-    textSize(36);
-    textAlign(CENTER);
-    text("Player 1 wins!!", 640, 250);
-  } else if (player1.hpoints < 0.5) {
-    background(0);
-    fill(255);
-    textSize(36);
-    textAlign(CENTER);
-    text("Player 2 wins!!", 640, 250);
+    if (player2.ammo <= 0) {
+      p2TextWep = "Fists";
+    }
+
+    texts();
+
+    spawnSys();
+
+    if (millis() - p1startTimer > 1000) {
+      player1.pickEnable = false;
+      println("yey");
+    }
+
+    if (millis() - p2startTimer > 1000) {
+      player2.pickEnable = false;
+      println("yey");
+    }
+
+    if (player2.hpoints < 0.5) {
+
+      background(0);
+      fill(255);
+      textSize(36);
+      textAlign(CENTER);
+      text("Player 1 wins!!", 640, 250);
+    } else if (player1.hpoints < 0.5) {
+      background(0);
+      fill(255);
+      textSize(36);
+      textAlign(CENTER);
+      text("Player 2 wins!!", 640, 250);
+    }
+    break;
   }
 }
 
