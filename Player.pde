@@ -6,7 +6,8 @@ class Player {
   float dPlayerLarg;
   float dPlayerAlt;
   int remainJump;
-  int damage, ammo;
+  float damage;
+  int ammo;
   boolean pickEnable;
 
   Player(float playerX, float playerY, float playerLarg, float playerAlt) {
@@ -38,7 +39,7 @@ class Player {
     dPlayerLarg = playerLarg;
     dPlayerAlt = playerAlt;
 
-    hpoints = 100;
+    hpoints = 20;
     damage = 0;
     ammo = 0;
     pickEnable = false;

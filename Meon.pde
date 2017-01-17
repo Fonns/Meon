@@ -46,6 +46,7 @@ PImage floorI;
 PImage p1Still, p2Still, p1StillL, p2StillL;
 
 SoundFile punchHit, punchCritHit;
+SoundFile mainTheme;
 
 int spawns;
 int startTimer;
@@ -146,6 +147,10 @@ void setup() {
 
   startTimer = 0;
 
+  mainTheme = new SoundFile(this, "mainTheme.mp3");
+  mainTheme.amp(0.5);
+  mainTheme.loop();
+
   punchHit = new SoundFile(this, "punchHit.mp3");
   punchHit.rate(0.5);
 
@@ -159,32 +164,34 @@ void draw() {
 
   case stateMMenu:
     background(mainMenuI);
+    
 
     if (mousePressed) {
       println("x: " + mouseX + "; y:" + mouseY);
     }
-     
+
     //jogar
     if (mousePressed && mouseX > 41 && mouseY > 36 && mouseX < 136 && mouseY < 99) {
       gameState = 1;
+      mainTheme.stop();
     }
-    
+
     //creditos
     if (mousePressed && mouseX > 43 && mouseY > 144 && mouseX < 218 && mouseY < 202) {
       gameState = 2;
     }
-    
+
     //settings
     if (mousePressed && mouseX > 45 && mouseY > 232 && mouseX < 238 && mouseY < 302) {
       gameState = 3;
     }
-    
+
     //quit
     if (mousePressed && mouseX > 41 && mouseY > 427 && mouseX < 141 && mouseY < 487) {
       exit();
     }
     break;
-    
+
   case stateMenuCredits:
     background(menuCredits);
     break;
@@ -194,7 +201,7 @@ void draw() {
   case stateGame:
     background(bgI);
     box2d.step();
-
+    
     fx1 = comando.getSlider("movX").getValue();
     //fx2 = comando2.getSlider("movX").getValue();
 
@@ -272,10 +279,14 @@ void texts() {
 
   fill(255);
   textSize(16);
-  textAlign(CENTER);
-  text("HP: "+round(player1.hpoints), 40, 20);
-  text(p1TextWep + "  " + player1.ammo, 40, 40);
-  textAlign(CENTER);
-  text("HP: "+round(player2.hpoints), 1240, 20);
-  text(p2TextWep + "  " + player2.ammo, 1240, 40);
+  textAlign(LEFT);
+  text(p1TextWep + "  " + player1.ammo, 40+10*player1.hpoints, 39);
+  textAlign(RIGHT);
+  text(p2TextWep + "  " + player2.ammo, 1040+(200-10*player2.hpoints), 39);
+
+  rectMode(CORNER);
+  rect(30, 25, 10*player1.hpoints, 15);
+
+  rectMode(CORNERS);
+  rect(1050+(200-10*player2.hpoints), 25, 1250, 40);
 }
