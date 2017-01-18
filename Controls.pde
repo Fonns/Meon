@@ -4,6 +4,7 @@ void BpFp1() {
   comando.getButton("punch").plug(this, "murro", ControlIO.ON_PRESS);
   comando.getButton("grabWep").plug(this, "Aarma", ControlIO.ON_PRESS);
   comando.getButton("useWep").plug(this, "Uarma", ControlIO.ON_PRESS);
+  comando.getButton("startB").plug(this, "startB", ControlIO.ON_PRESS);
 }
 
 void BpFp2() {
@@ -12,20 +13,26 @@ void BpFp2() {
   comando2.getButton("punch").plug(this, "p2murro", ControlIO.ON_PRESS);
   comando2.getButton("grabWep").plug(this, "p2Aarma", ControlIO.ON_PRESS);
   comando2.getButton("useWep").plug(this, "p2Uarma", ControlIO.ON_PRESS);
+  comando2.getButton("startB").plug(this, "p2startB", ControlIO.ON_PRESS);
+}
+
+void startB() {
+
+  gameState = 0;
+  playingTheme.stop();
+  mainTheme.loop();
+}
+
+void p2startB() {
+
+  gameState = 0;
+  playingTheme.stop();
+  mainTheme.loop();
 }
 
 void salto() {
 
   player1.gJump();
-  if (player1.hpoints < 1 || player2.hpoints <1) {
-
-    player1.destroy();
-    player2.destroy();
-    player1 = new PlayerOne(280, 80, 39, 55);
-    player2 = new PlayerTwo(1000, 80, 39, 55);
-    p1Pos = player1.playerbody.getPosition();
-    p2Pos = player2.playerbody.getPosition();
-  }
 }
 
 void murro() {
@@ -33,7 +40,7 @@ void murro() {
   println("murro check");
   float critHit = random(99);
   if (abs(p1Pos.x - p2Pos.x) < 8 && abs(p1Pos.y - p2Pos.y) < 8) {
-    if (critHit < 24) {
+    if (critHit < 9) {
       player2.hpoints -= 20;
       punchCritHit.play();
     } else {
@@ -62,21 +69,13 @@ void Uarma() {
       bulletDir = new Vec2 (100, 0);
       bullets.add(new Bullet(player1.playerPos.x + 35, player1.playerPos.y-10, 5, 5));
     }
+    shot.play();
   }
 }
 
 void p2salto() {
 
   player2.gJump();
-  if (player1.hpoints < 1 || player2.hpoints <1) {
-
-    player1.destroy();
-    player2.destroy();
-    player1 = new PlayerOne(280, 80, 39, 55);
-    player2 = new PlayerTwo(1000, 80, 39, 55);
-    p1Pos = player1.playerbody.getPosition();
-    p2Pos = player2.playerbody.getPosition();
-  }
 }
 
 void p2murro() {
@@ -84,7 +83,7 @@ void p2murro() {
   println("murro check");
   float critHit = random(99);
   if (abs(p1Pos.x - p2Pos.x) < 8 && abs(p1Pos.y - p2Pos.y) < 8) {
-    if (critHit < 24) {
+    if (critHit < 9) {
       player1.hpoints -= 20;
       punchCritHit.play();
     } else {
@@ -114,6 +113,7 @@ void p2Uarma() {
       bulletDir = new Vec2 (100, 0);
       bullets.add(new Bullet(player2.playerPos.x + 35, player2.playerPos.y -10, 5, 5));
     }
+    shot.play();
   }
 }
 

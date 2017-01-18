@@ -52,6 +52,91 @@ class WeaponPUP {
   }
 }
 
+class PUfinal extends WeaponPUP {
+
+  PUfinal(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
+    super(weappupX, weappupY, weappupLarg, weappupAlt);
+  }
+
+  void display() {
+
+    weappupPos = box2d.getBodyPixelCoord(weappupbody);
+
+    pushMatrix();
+    translate(weappupPos.x, weappupPos.y);
+    imageMode(CENTER);
+    image(PUfinalsI, 0, 0);
+    popMatrix();
+  }
+
+  void destroy() {
+
+    if (destroys == true) {
+      PUfinals.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
+  }
+}
+
+class PUfaid extends WeaponPUP {
+
+  PUfaid(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
+    super(weappupX, weappupY, weappupLarg, weappupAlt);
+    ammo = 6;
+    damage = 1;
+  }
+
+  void display() {
+
+    weappupPos = box2d.getBodyPixelCoord(weappupbody);
+
+    pushMatrix();
+    translate(weappupPos.x, weappupPos.y);
+    imageMode(CENTER);
+    image(PUfaidI, 0, 0);
+    popMatrix();
+  }
+
+  void destroy() {
+
+    if (destroys == true) {
+      PUfaids.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
+  }
+}
+
+class PUarmor extends WeaponPUP {
+
+  PUarmor(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
+
+    super(weappupX, weappupY, weappupLarg, weappupAlt);
+    ammo = 6;
+    damage = 1;
+  }
+
+  void display() {
+
+    weappupPos = box2d.getBodyPixelCoord(weappupbody);
+
+    pushMatrix();
+    translate(weappupPos.x, weappupPos.y);
+    imageMode(CENTER);
+    image(PUarmorI, 0, 0);
+    popMatrix();
+  }
+
+  void destroy() {
+
+    if (destroys == true) {
+      PUarmors.remove(this);
+      box2d.destroyBody(weappupbody);
+    }
+  }
+}
+
 class Pistol extends WeaponPUP {
 
   Pistol(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
@@ -67,8 +152,8 @@ class Pistol extends WeaponPUP {
 
     pushMatrix();
     translate(weappupPos.x, weappupPos.y);
-    rectMode(CENTER);
-    rect(0, 0, dWeappupLarg, dWeappupAlt);
+    imageMode(CENTER);
+    image(pistoli, 0, 0);
     popMatrix();
   }
 
@@ -96,9 +181,8 @@ class Rifle extends WeaponPUP {
 
     pushMatrix();
     translate(weappupPos.x, weappupPos.y);
-    rectMode(CENTER);
-    fill(96);
-    rect(0, 0, dWeappupLarg, dWeappupAlt);
+    imageMode(CENTER);
+    image(aki, 0, 0);
     popMatrix();
   }
 
@@ -110,48 +194,6 @@ class Rifle extends WeaponPUP {
     }
   }
 }
-
-/*class Shotgun extends WeaponPUP {
- 
- Shotgun(float weappupX, float weappupY, float weappupLarg, float weappupAlt) {
- 
- super(weappupX, weappupY, weappupLarg, weappupAlt);
- ammo = 2;
- damage = 8;
- }
- 
- void display() {
- 
- weappupPos = box2d.getBodyPixelCoord(weappupbody);
- 
- pushMatrix();
- translate(weappupPos.x, weappupPos.y);
- rectMode(CENTER);
- rect(0, 0, dWeappupLarg, dWeappupAlt);
- popMatrix();
- }
- }*/
-
-/*class Grenade extends WeaponPUP {
- 
- Grenade(float weappupX, float weappupY, float weappupLarg, float weappupAlt){
- 
- super(weappupX, weappupY, weappupLarg, weappupAlt);
- ammo = 1;
- damage = 6;
- }
- 
- void display() {
- 
- weappupPos = box2d.getBodyPixelCoord(weappupbody);
- 
- pushMatrix();
- translate(weappupPos.x, weappupPos.y);
- rectMode(CENTER);
- rect(0, 0, dWeappupLarg, dWeappupAlt);
- popMatrix();
- }
- }*/
 
 class Bazuka extends WeaponPUP {
 
@@ -168,9 +210,8 @@ class Bazuka extends WeaponPUP {
 
     pushMatrix();
     translate(weappupPos.x, weappupPos.y);
-    rectMode(CENTER);
-    fill(204, 0, 0);
-    rect(0, 0, dWeappupLarg, dWeappupAlt);
+    imageMode(CENTER);
+    image(bazookai, 0, 0);
     popMatrix();
   }
 

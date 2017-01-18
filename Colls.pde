@@ -246,7 +246,7 @@ void beginContact(Contact cp) {
       bazuka.destroys = true;
       player2.ammo = 1;
       player2.damage = 14;
-      p2TextWep = "Bazuka";
+      p2TextWep = "Bazooka";
       spawns -=1;
     }
   }
@@ -258,9 +258,107 @@ void beginContact(Contact cp) {
       bazuka.destroys = true;
       player2.ammo = 1;
       player2.damage = 14;
-      p2TextWep = "Bazuka";
+      p2TextWep = "Bazooka";
       spawns -=1;
     }
+  }
+
+  //pups
+  if (obj1.getClass() == PUfinal.class && obj2.getClass() == PlayerOne.class) {
+
+    PUfinal pufinal = (PUfinal) obj1;
+    pufinal.destroys = true;
+    player1.ammo = 1;
+    player1.damage = 20;
+    p1TextWep = "Final Strike";
+  }
+
+  if (obj2.getClass() == PUfinal.class && obj1.getClass() == PlayerOne.class) {
+
+    PUfinal pufinal = (PUfinal) obj2;
+    pufinal.destroys = true;
+    player1.ammo = 1;
+    player1.damage = 20;
+    p1TextWep = "Final Strike";
+  }
+
+  if (obj1.getClass() == PUfaid.class && obj2.getClass() == PlayerOne.class) {
+
+    PUfaid pufaid = (PUfaid) obj1;
+    pufaid.destroys = true;
+    player1.hpoints +=5;
+  }
+
+  if (obj2.getClass() == PUfaid.class && obj1.getClass() == PlayerOne.class) {
+
+    PUfaid pufaid = (PUfaid) obj2;
+    pufaid.destroys = true;
+    player1.hpoints +=5;
+  }
+
+  if (obj1.getClass() == PUarmor.class && obj2.getClass() == PlayerOne.class) {
+
+    PUarmor puarmor = (PUarmor) obj1;
+    puarmor.destroys = true;
+    p1armorTimer = millis();
+    p1tempHealth = player1.hpoints;
+  }
+
+  if (obj2.getClass() == PUarmor.class && obj1.getClass() == PlayerOne.class) {
+
+    PUarmor puarmor = (PUarmor) obj2;
+    puarmor.destroys = true;
+    p1armorTimer = millis();
+    p1tempHealth = player1.hpoints;
+  }
+  
+  //pups2
+  if (obj1.getClass() == PUfinal.class && obj2.getClass() == PlayerTwo.class) {
+
+    PUfinal pufinal = (PUfinal) obj1;
+    pufinal.destroys = true;
+    player2.ammo = 1;
+    player2.damage = 20;
+    p2TextWep = "Final Strike";
+  }
+
+  if (obj2.getClass() == PUfinal.class && obj1.getClass() == PlayerTwo.class) {
+
+    PUfinal pufinal = (PUfinal) obj2;
+    pufinal.destroys = true;
+    player2.ammo = 1;
+    player2.damage = 20;
+    p2TextWep = "Final Strike";
+  }
+
+  if (obj1.getClass() == PUfaid.class && obj2.getClass() == PlayerTwo.class) {
+
+    PUfaid pufaid = (PUfaid) obj1;
+    pufaid.destroys = true;
+    player2.hpoints +=5;
+  }
+
+  if (obj2.getClass() == PUfaid.class && obj1.getClass() == PlayerTwo.class) {
+
+    PUfaid pufaid = (PUfaid) obj2;
+    pufaid.destroys = true;
+    player2.hpoints +=5;
+  }
+
+  if (obj1.getClass() == PUarmor.class && obj2.getClass() == PlayerTwo.class) {
+
+    PUarmor puarmor = (PUarmor) obj1;
+    puarmor.destroys = true;
+    p2armorTimer = millis();
+    p2tempHealth = player2.hpoints;
+  }
+
+  if (obj2.getClass() == PUarmor.class && obj1.getClass() == PlayerTwo.class) {
+
+    PUarmor puarmor = (PUarmor) obj2;
+    puarmor.destroys = true;
+    p2armorTimer = millis();
+    p2tempHealth = player2.hpoints;
   }
 }
 

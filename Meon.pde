@@ -36,21 +36,37 @@ ArrayList<Pistol> pistols;
 ArrayList<Rifle> rifles;
 ArrayList<Bazuka> bazukas;
 
+ArrayList<PUarmor> PUarmors;
+ArrayList<PUfaid> PUfaids;
+ArrayList<PUfinal> PUfinals;
+
 PImage platI;
 PImage platImg;
 PImage bgI;
 PImage mainMenuI;
 PImage menuCredits;
 PImage menuSettings;
+PImage menuControls, menuItems;
 PImage floorI;
 PImage p1Still, p2Still, p1StillL, p2StillL;
+PImage PUarmorI, PUfinalsI, PUfaidI;
+PImage aki, bazookai, pistoli;
 
 SoundFile punchHit, punchCritHit;
 SoundFile mainTheme;
+SoundFile shot;
+SoundFile playingTheme;
 
 int spawns;
-int startTimer;
+int startTimer, PUstartTimer;
 int p1startTimer, p2startTimer;
+int p1Points, p2Points;
+
+int p1fsTimer, p1armorTimer;
+int p2fsTimer, p2armorTimer;
+
+float p1tempHealth;
+float p2tempHealth;
 
 String p1TextWep, p2TextWep;
 
@@ -59,6 +75,8 @@ final int stateMMenu = 0;
 final int stateGame = 1;
 final int stateMenuCredits = 2;
 final int stateMenuSettings = 3;
+final int stateMenuControls = 4;
+final int stateMenuItems = 5;
 
 void setup() {
 
@@ -70,11 +88,11 @@ void setup() {
 
   //procura comandos compativeis
   comando = controlo.getMatchedDevice("playerControl");
-  //comando2 = controlo.getMatchedDevice("player2Control");
+  comando2 = controlo.getMatchedDevice("player2Control");
 
   //associa funçoes a botoes (Botão para Função)
   BpFp1(); //p1 = player 1
-  //BpFp2();
+  BpFp2();
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -86,6 +104,12 @@ void setup() {
 
   player1.remainJump = 3;
   player2.remainJump = 3;
+
+  p1fsTimer = -10000;
+
+  p2fsTimer = -10000;
+  p1armorTimer = -10000;
+  p2armorTimer = -10000;
 
   p1Pos = player1.playerbody.getPosition();
   p2Pos = player2.playerbody.getPosition();
@@ -132,6 +156,10 @@ void setup() {
   rifles = new ArrayList<Rifle>();
   bazukas = new ArrayList<Bazuka>();
 
+  PUarmors = new ArrayList<PUarmor>();
+  PUfaids = new ArrayList<PUfaid>();
+  PUfinals = new ArrayList<PUfinal>();
+
   platI = loadImage("PlatBig.png");
   floorI = loadImage("floor.png");
 
@@ -139,41 +167,57 @@ void setup() {
   mainMenuI = loadImage("mainMenu.png");
   menuCredits = loadImage("menuCredits.png");
   menuSettings = loadImage("menuSettings.png");
+  menuControls = loadImage("menuControls.png");
+  menuItems = loadImage("menuItems.png");
+
+  PUfaidI = loadImage("PUfaid.png");
+  PUfinalsI = loadImage("PUfinals.png");
+  PUarmorI = loadImage("PUarmor.png");
+
+  aki = loadImage("AK.png");
+  bazookai = loadImage("Bazuka.png");
+  pistoli = loadImage("Pistol.png");
 
   p1Still = loadImage("p1Still.png");
   p2Still = loadImage("p2Still.png");
   p1StillL = loadImage("p1StillL.png");
   p2StillL = loadImage("p2StillL.png");
 
-  startTimer = 0;
-
   mainTheme = new SoundFile(this, "mainTheme.mp3");
-  mainTheme.amp(0.5);
+  mainTheme.amp(0.9);
   mainTheme.loop();
+
+  playingTheme = new SoundFile(this, "playingMusic.mp3");
+  playingTheme.amp(0.3);
 
   punchHit = new SoundFile(this, "punchHit.mp3");
   punchHit.rate(0.5);
 
   punchCritHit = new SoundFile(this, "punchCritHit.mp3");
   punchCritHit.rate(0.5);
+
+  shot = new SoundFile(this, "shot.mp3");
+  shot.rate(0.5);
 }
 
 void draw() {
+
+  if (mousePressed) {
+    println("x: " + mouseX + "; y:" + mouseY);
+  }
 
   switch(gameState) {
 
   case stateMMenu:
     background(mainMenuI);
-    
-
-    if (mousePressed) {
-      println("x: " + mouseX + "; y:" + mouseY);
-    }
 
     //jogar
     if (mousePressed && mouseX > 41 && mouseY > 36 && mouseX < 136 && mouseY < 99) {
       gameState = 1;
+      startTimer = 0;
+      PUstartTimer = 0;
       mainTheme.stop();
+      playingTheme.loop();
     }
 
     //creditos
@@ -194,16 +238,42 @@ void draw() {
 
   case stateMenuCredits:
     background(menuCredits);
+    if (mousePressed && mouseX > 28 && mouseY > 629 && mouseX < 138 && mouseY < 697) {
+      gameState = 0;
+    }
     break;
   case stateMenuSettings:
     background(menuSettings);
+    if (mousePressed && mouseX > 28 && mouseY > 629 && mouseX < 138 && mouseY < 697) {
+      gameState = 0;
+    }
+
+    if (mousePressed && mouseX > 30 && mouseY > 45 && mouseX < 224 && mouseY < 124) {
+      gameState = 4;
+    }
+
+    if (mousePressed && mouseX > 35 && mouseY > 152 && mouseX < 287 && mouseY < 229) {
+      gameState = 5;
+    }
+    break;
+  case stateMenuControls:
+    background(menuControls);
+    if (mousePressed && mouseX > 28 && mouseY > 629 && mouseX < 138 && mouseY < 697) {
+      gameState = 3;
+    }
+    break;
+  case stateMenuItems:
+    background(menuItems);
+    if (mousePressed && mouseX > 28 && mouseY > 629 && mouseX < 138 && mouseY < 697) {
+      gameState = 3;
+    }
     break;
   case stateGame:
     background(bgI);
     box2d.step();
-    
+
     fx1 = comando.getSlider("movX").getValue();
-    //fx2 = comando2.getSlider("movX").getValue();
+    fx2 = comando2.getSlider("movX").getValue();
 
     for (int i=0; i<platforms.size(); i++) {
       platforms.get(i).display();
@@ -235,12 +305,35 @@ void draw() {
       bazukas.get(i).destroy();
     }
 
+    for (int i = 0; i<PUfinals.size(); i++) {
+      PUfinals.get(i).display();
+      PUfinals.get(i).destroy();
+    }
+
+    for (int i = 0; i<PUarmors.size(); i++) {
+      PUarmors.get(i).display();
+      PUarmors.get(i).destroy();
+    }
+
+    for (int i = 0; i<PUfaids.size(); i++) {
+      PUfaids.get(i).display();
+      PUfaids.get(i).destroy();
+    }
+
     if (player1.ammo <= 0) {
       p1TextWep = "Fists";
     }
 
     if (player2.ammo <= 0) {
       p2TextWep = "Fists";
+    }
+
+    if (millis() - p1armorTimer < 10000) {
+      player1.hpoints = p1tempHealth;
+    }
+
+    if (millis() - p2armorTimer < 10000) {
+      player2.hpoints = p2tempHealth;
     }
 
     texts();
@@ -259,17 +352,15 @@ void draw() {
 
     if (player2.hpoints < 0.5) {
 
-      background(0);
-      fill(255);
-      textSize(36);
-      textAlign(CENTER);
-      text("Player 1 wins!!", 640, 250);
+      p1Points +=1;
+      player2.destroy();
+      player2 = new PlayerTwo(1000, 80, 39, 55);
+      p2Pos = player2.playerbody.getPosition();
     } else if (player1.hpoints < 0.5) {
-      background(0);
-      fill(255);
-      textSize(36);
-      textAlign(CENTER);
-      text("Player 2 wins!!", 640, 250);
+      p2Points +=1;
+      player1.destroy();
+      player1 = new PlayerOne(280, 80, 39, 55);
+      p1Pos = player2.playerbody.getPosition();
     }
     break;
   }
@@ -283,6 +374,9 @@ void texts() {
   text(p1TextWep + "  " + player1.ammo, 40+10*player1.hpoints, 39);
   textAlign(RIGHT);
   text(p2TextWep + "  " + player2.ammo, 1040+(200-10*player2.hpoints), 39);
+  
+  textAlign(CENTER);
+  text(p1Points + "   |   " + p2Points, 640, 39);
 
   rectMode(CORNER);
   rect(30, 25, 10*player1.hpoints, 15);
